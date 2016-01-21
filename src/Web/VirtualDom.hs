@@ -141,13 +141,27 @@ attribute n x = Attribute n (jsval x)
 -- We need to use a hook to set namespace on attributes
 -- This is mostly used for exotic stuff such as xlink
 
--- TODO wrap with decoder, allow Options as per below
+-- |
+-- An event listener as a property.
+--
+-- @
+-- on "click" $ \_ -> print "Clicked!"
+-- @
+--
+-- First argument is attribute name without 'on'.
+--
+-- For a list of listener attributes, see:
+--
+-- * http://www.w3schools.com/tags/ref_eventattributes.asp
+-- * https://www.w3.org/TR/SVG/interact.html#SVGEvents
+--
 on :: JSString -> (JSVal -> IO ()) -> Property
 on n k = property ("on" <> n) $ wrap k
-
-wrap k = unsafePerformIO $ do
-  cb <- CB.syncCallback1 CB.ThrowWouldBlock k
-  return $ jsval cb
+  where
+    -- TODO this will leak everything referenced by the callback.
+    wrap k = unsafePerformIO $ do
+      cb <- CB.syncCallback1 CB.ThrowWouldBlock k
+      return $ jsval cb
 
 
 
