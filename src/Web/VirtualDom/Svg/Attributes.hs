@@ -16,1165 +16,1165 @@ import qualified Web.VirtualDom as VirtualDom
 -- Regular VirtualDom.attributes
 
 {-|-}
-accentHeight :: JSString -> Attribute
+accentHeight :: JSString -> Property
 accentHeight =
   VirtualDom.attribute "accent-height"
 
 
 {-|-}
-accelerate :: JSString -> Attribute
+accelerate :: JSString -> Property
 accelerate =
   VirtualDom.attribute "accelerate"
 
 
 {-|-}
-accumulate :: JSString -> Attribute
+accumulate :: JSString -> Property
 accumulate =
   VirtualDom.attribute "accumulate"
 
 
 {-|-}
-additive :: JSString -> Attribute
+additive :: JSString -> Property
 additive =
   VirtualDom.attribute "additive"
 
 
 {-|-}
-alphabetic :: JSString -> Attribute
+alphabetic :: JSString -> Property
 alphabetic =
   VirtualDom.attribute "alphabetic"
 
 
 {-|-}
-allowReorder :: JSString -> Attribute
+allowReorder :: JSString -> Property
 allowReorder =
   VirtualDom.attribute "allowReorder"
 
 
 {-|-}
-amplitude :: JSString -> Attribute
+amplitude :: JSString -> Property
 amplitude =
   VirtualDom.attribute "amplitude"
 
 
 {-|-}
-arabicForm :: JSString -> Attribute
+arabicForm :: JSString -> Property
 arabicForm =
   VirtualDom.attribute "arabic-form"
 
 
 {-|-}
-ascent :: JSString -> Attribute
+ascent :: JSString -> Property
 ascent =
   VirtualDom.attribute "ascent"
 
 
 {-|-}
-attributeName :: JSString -> Attribute
+attributeName :: JSString -> Property
 attributeName =
   VirtualDom.attribute "VirtualDom.attributeName"
 
 
 {-|-}
-attributeType :: JSString -> Attribute
+attributeType :: JSString -> Property
 attributeType =
   VirtualDom.attribute "VirtualDom.attributeType"
 
 
 {-|-}
-autoReverse :: JSString -> Attribute
+autoReverse :: JSString -> Property
 autoReverse =
   VirtualDom.attribute "autoReverse"
 
 
 {-|-}
-azimuth :: JSString -> Attribute
+azimuth :: JSString -> Property
 azimuth =
   VirtualDom.attribute "azimuth"
 
 
 {-|-}
-baseFrequency :: JSString -> Attribute
+baseFrequency :: JSString -> Property
 baseFrequency =
   VirtualDom.attribute "baseFrequency"
 
 
 {-|-}
-baseProfile :: JSString -> Attribute
+baseProfile :: JSString -> Property
 baseProfile =
   VirtualDom.attribute "baseProfile"
 
 
 {-|-}
-bbox :: JSString -> Attribute
+bbox :: JSString -> Property
 bbox =
   VirtualDom.attribute "bbox"
 
 
 {-|-}
-begin :: JSString -> Attribute
+begin :: JSString -> Property
 begin =
   VirtualDom.attribute "begin"
 
 
 {-|-}
-bias :: JSString -> Attribute
+bias :: JSString -> Property
 bias =
   VirtualDom.attribute "bias"
 
 
 {-|-}
-by :: JSString -> Attribute
+by :: JSString -> Property
 by =
   VirtualDom.attribute "by"
 
 
 {-|-}
-calcMode :: JSString -> Attribute
+calcMode :: JSString -> Property
 calcMode =
   VirtualDom.attribute "calcMode"
 
 
 {-|-}
-capHeight :: JSString -> Attribute
+capHeight :: JSString -> Property
 capHeight =
   VirtualDom.attribute "cap-height"
 
 
 {-|-}
-class_ :: JSString -> Attribute
+class_ :: JSString -> Property
 class_ =
   VirtualDom.attribute "class"
 
 
 {-|-}
-clipPathUnits :: JSString -> Attribute
+clipPathUnits :: JSString -> Property
 clipPathUnits =
   VirtualDom.attribute "clipPathUnits"
 
 
 {-|-}
-contentScriptType :: JSString -> Attribute
+contentScriptType :: JSString -> Property
 contentScriptType =
   VirtualDom.attribute "contentScriptType"
 
 
 {-|-}
-contentStyleType :: JSString -> Attribute
+contentStyleType :: JSString -> Property
 contentStyleType =
   VirtualDom.attribute "contentStyleType"
 
 
 {-|-}
-cx :: JSString -> Attribute
+cx :: JSString -> Property
 cx =
   VirtualDom.attribute "cx"
 
 
 {-|-}
-cy :: JSString -> Attribute
+cy :: JSString -> Property
 cy =
   VirtualDom.attribute "cy"
 
 
 {-|-}
-d :: JSString -> Attribute
+d :: JSString -> Property
 d =
   VirtualDom.attribute "d"
 
 
 {-|-}
-decelerate :: JSString -> Attribute
+decelerate :: JSString -> Property
 decelerate =
   VirtualDom.attribute "decelerate"
 
 
 {-|-}
-descent :: JSString -> Attribute
+descent :: JSString -> Property
 descent =
   VirtualDom.attribute "descent"
 
 
 {-|-}
-diffuseConstant :: JSString -> Attribute
+diffuseConstant :: JSString -> Property
 diffuseConstant =
   VirtualDom.attribute "diffuseConstant"
 
 
 {-|-}
-divisor :: JSString -> Attribute
+divisor :: JSString -> Property
 divisor =
   VirtualDom.attribute "divisor"
 
 
 {-|-}
-dur :: JSString -> Attribute
+dur :: JSString -> Property
 dur =
   VirtualDom.attribute "dur"
 
 
 {-|-}
-dx :: JSString -> Attribute
+dx :: JSString -> Property
 dx =
   VirtualDom.attribute "dx"
 
 
 {-|-}
-dy :: JSString -> Attribute
+dy :: JSString -> Property
 dy =
   VirtualDom.attribute "dy"
 
 
 {-|-}
-edgeMode :: JSString -> Attribute
+edgeMode :: JSString -> Property
 edgeMode =
   VirtualDom.attribute "edgeMode"
 
 
 {-|-}
-elevation :: JSString -> Attribute
+elevation :: JSString -> Property
 elevation =
   VirtualDom.attribute "elevation"
 
 
 {-|-}
-end :: JSString -> Attribute
+end :: JSString -> Property
 end =
   VirtualDom.attribute "end"
 
 
 {-|-}
-exponent :: JSString -> Attribute
+exponent :: JSString -> Property
 exponent =
   VirtualDom.attribute "exponent"
 
 
 {-|-}
-externalResourcesRequired :: JSString -> Attribute
+externalResourcesRequired :: JSString -> Property
 externalResourcesRequired =
   VirtualDom.attribute "externalResourcesRequired"
 
 
 {-|-}
-filterRes :: JSString -> Attribute
+filterRes :: JSString -> Property
 filterRes =
   VirtualDom.attribute "filterRes"
 
 
 {-|-}
-filterUnits :: JSString -> Attribute
+filterUnits :: JSString -> Property
 filterUnits =
   VirtualDom.attribute "filterUnits"
 
 
 {-|-}
-format :: JSString -> Attribute
+format :: JSString -> Property
 format =
   VirtualDom.attribute "format"
 
 
 {-|-}
-from :: JSString -> Attribute
+from :: JSString -> Property
 from =
   VirtualDom.attribute "from"
 
 
 {-|-}
-fx :: JSString -> Attribute
+fx :: JSString -> Property
 fx =
   VirtualDom.attribute "fx"
 
 
 {-|-}
-fy :: JSString -> Attribute
+fy :: JSString -> Property
 fy =
   VirtualDom.attribute "fy"
 
 
 {-|-}
-g1 :: JSString -> Attribute
+g1 :: JSString -> Property
 g1 =
   VirtualDom.attribute "g1"
 
 
 {-|-}
-g2 :: JSString -> Attribute
+g2 :: JSString -> Property
 g2 =
   VirtualDom.attribute "g2"
 
 
 {-|-}
-glyphName :: JSString -> Attribute
+glyphName :: JSString -> Property
 glyphName =
   VirtualDom.attribute "glyph-name"
 
 
 {-|-}
-glyphRef :: JSString -> Attribute
+glyphRef :: JSString -> Property
 glyphRef =
   VirtualDom.attribute "glyphRef"
 
 
 {-|-}
-gradientTransform :: JSString -> Attribute
+gradientTransform :: JSString -> Property
 gradientTransform =
   VirtualDom.attribute "gradientTransform"
 
 
 {-|-}
-gradientUnits :: JSString -> Attribute
+gradientUnits :: JSString -> Property
 gradientUnits =
   VirtualDom.attribute "gradientUnits"
 
 
 {-|-}
-hanging :: JSString -> Attribute
+hanging :: JSString -> Property
 hanging =
   VirtualDom.attribute "hanging"
 
 
 {-|-}
-height :: JSString -> Attribute
+height :: JSString -> Property
 height =
   VirtualDom.attribute "height"
 
 
 {-|-}
-horizAdvX :: JSString -> Attribute
+horizAdvX :: JSString -> Property
 horizAdvX =
   VirtualDom.attribute "horiz-adv-x"
 
 
 {-|-}
-horizOriginX :: JSString -> Attribute
+horizOriginX :: JSString -> Property
 horizOriginX =
   VirtualDom.attribute "horiz-origin-x"
 
 
 {-|-}
-horizOriginY :: JSString -> Attribute
+horizOriginY :: JSString -> Property
 horizOriginY =
   VirtualDom.attribute "horiz-origin-y"
 
 
 {-|-}
-id :: JSString -> Attribute
+id :: JSString -> Property
 id =
   VirtualDom.attribute "id"
 
 
 {-|-}
-ideographic :: JSString -> Attribute
+ideographic :: JSString -> Property
 ideographic =
   VirtualDom.attribute "ideographic"
 
 
 {-|-}
-in' :: JSString -> Attribute
+in' :: JSString -> Property
 in' =
   VirtualDom.attribute "in"
 
 
 {-|-}
-in2 :: JSString -> Attribute
+in2 :: JSString -> Property
 in2 =
   VirtualDom.attribute "in2"
 
 
 {-|-}
-intercept :: JSString -> Attribute
+intercept :: JSString -> Property
 intercept =
   VirtualDom.attribute "intercept"
 
 
 {-|-}
-k :: JSString -> Attribute
+k :: JSString -> Property
 k =
   VirtualDom.attribute "k"
 
 
 {-|-}
-k1 :: JSString -> Attribute
+k1 :: JSString -> Property
 k1 =
   VirtualDom.attribute "k1"
 
 
 {-|-}
-k2 :: JSString -> Attribute
+k2 :: JSString -> Property
 k2 =
   VirtualDom.attribute "k2"
 
 
 {-|-}
-k3 :: JSString -> Attribute
+k3 :: JSString -> Property
 k3 =
   VirtualDom.attribute "k3"
 
 
 {-|-}
-k4 :: JSString -> Attribute
+k4 :: JSString -> Property
 k4 =
   VirtualDom.attribute "k4"
 
 
 {-|-}
-kernelMatrix :: JSString -> Attribute
+kernelMatrix :: JSString -> Property
 kernelMatrix =
   VirtualDom.attribute "kernelMatrix"
 
 
 {-|-}
-kernelUnitLength :: JSString -> Attribute
+kernelUnitLength :: JSString -> Property
 kernelUnitLength =
   VirtualDom.attribute "kernelUnitLength"
 
 
 {-|-}
-keyPoints :: JSString -> Attribute
+keyPoints :: JSString -> Property
 keyPoints =
   VirtualDom.attribute "keyPoints"
 
 
 {-|-}
-keySplines :: JSString -> Attribute
+keySplines :: JSString -> Property
 keySplines =
   VirtualDom.attribute "keySplines"
 
 
 {-|-}
-keyTimes :: JSString -> Attribute
+keyTimes :: JSString -> Property
 keyTimes =
   VirtualDom.attribute "keyTimes"
 
 
 {-|-}
-lang :: JSString -> Attribute
+lang :: JSString -> Property
 lang =
   VirtualDom.attribute "lang"
 
 
 {-|-}
-lengthAdjust :: JSString -> Attribute
+lengthAdjust :: JSString -> Property
 lengthAdjust =
   VirtualDom.attribute "lengthAdjust"
 
 
 {-|-}
-limitingConeAngle :: JSString -> Attribute
+limitingConeAngle :: JSString -> Property
 limitingConeAngle =
   VirtualDom.attribute "limitingConeAngle"
 
 
 {-|-}
-local :: JSString -> Attribute
+local :: JSString -> Property
 local =
   VirtualDom.attribute "local"
 
 
 {-|-}
-markerHeight :: JSString -> Attribute
+markerHeight :: JSString -> Property
 markerHeight =
   VirtualDom.attribute "markerHeight"
 
 
 {-|-}
-markerUnits :: JSString -> Attribute
+markerUnits :: JSString -> Property
 markerUnits =
   VirtualDom.attribute "markerUnits"
 
 
 {-|-}
-markerWidth :: JSString -> Attribute
+markerWidth :: JSString -> Property
 markerWidth =
   VirtualDom.attribute "markerWidth"
 
 
 {-|-}
-maskContentUnits :: JSString -> Attribute
+maskContentUnits :: JSString -> Property
 maskContentUnits =
   VirtualDom.attribute "maskContentUnits"
 
 
 {-|-}
-maskUnits :: JSString -> Attribute
+maskUnits :: JSString -> Property
 maskUnits =
   VirtualDom.attribute "maskUnits"
 
 
 {-|-}
-mathematical :: JSString -> Attribute
+mathematical :: JSString -> Property
 mathematical =
   VirtualDom.attribute "mathematical"
 
 
 {-|-}
-max :: JSString -> Attribute
+max :: JSString -> Property
 max =
   VirtualDom.attribute "max"
 
 
 {-|-}
-media :: JSString -> Attribute
+media :: JSString -> Property
 media =
   VirtualDom.attribute "media"
 
 
 {-|-}
-method :: JSString -> Attribute
+method :: JSString -> Property
 method =
   VirtualDom.attribute "method"
 
 
 {-|-}
-min :: JSString -> Attribute
+min :: JSString -> Property
 min =
   VirtualDom.attribute "min"
 
 
 {-|-}
-mode :: JSString -> Attribute
+mode :: JSString -> Property
 mode =
   VirtualDom.attribute "mode"
 
 
 {-|-}
-name :: JSString -> Attribute
+name :: JSString -> Property
 name =
   VirtualDom.attribute "name"
 
 
 {-|-}
-numOctaves :: JSString -> Attribute
+numOctaves :: JSString -> Property
 numOctaves =
   VirtualDom.attribute "numOctaves"
 
 
 {-|-}
-offset :: JSString -> Attribute
+offset :: JSString -> Property
 offset =
   VirtualDom.attribute "offset"
 
 
 {-|-}
-operator :: JSString -> Attribute
+operator :: JSString -> Property
 operator =
   VirtualDom.attribute "operator"
 
 
 {-|-}
-order :: JSString -> Attribute
+order :: JSString -> Property
 order =
   VirtualDom.attribute "order"
 
 
 {-|-}
-orient :: JSString -> Attribute
+orient :: JSString -> Property
 orient =
   VirtualDom.attribute "orient"
 
 
 {-|-}
-orientation :: JSString -> Attribute
+orientation :: JSString -> Property
 orientation =
   VirtualDom.attribute "orientation"
 
 
 {-|-}
-origin :: JSString -> Attribute
+origin :: JSString -> Property
 origin =
   VirtualDom.attribute "origin"
 
 
 {-|-}
-overlinePosition :: JSString -> Attribute
+overlinePosition :: JSString -> Property
 overlinePosition =
   VirtualDom.attribute "overline-position"
 
 
 {-|-}
-overlineThickness :: JSString -> Attribute
+overlineThickness :: JSString -> Property
 overlineThickness =
   VirtualDom.attribute "overline-thickness"
 
 
 {-|-}
-panose1 :: JSString -> Attribute
+panose1 :: JSString -> Property
 panose1 =
   VirtualDom.attribute "panose-1"
 
 
 {-|-}
-path :: JSString -> Attribute
+path :: JSString -> Property
 path =
   VirtualDom.attribute "path"
 
 
 {-|-}
-pathLength :: JSString -> Attribute
+pathLength :: JSString -> Property
 pathLength =
   VirtualDom.attribute "pathLength"
 
 
 {-|-}
-patternContentUnits :: JSString -> Attribute
+patternContentUnits :: JSString -> Property
 patternContentUnits =
   VirtualDom.attribute "patternContentUnits"
 
 
 {-|-}
-patternTransform :: JSString -> Attribute
+patternTransform :: JSString -> Property
 patternTransform =
   VirtualDom.attribute "patternTransform"
 
 
 {-|-}
-patternUnits :: JSString -> Attribute
+patternUnits :: JSString -> Property
 patternUnits =
   VirtualDom.attribute "patternUnits"
 
 
 {-|-}
-pointOrder :: JSString -> Attribute
+pointOrder :: JSString -> Property
 pointOrder =
   VirtualDom.attribute "point-order"
 
 
 {-|-}
-points :: JSString -> Attribute
+points :: JSString -> Property
 points =
   VirtualDom.attribute "points"
 
 
 {-|-}
-pointsAtX :: JSString -> Attribute
+pointsAtX :: JSString -> Property
 pointsAtX =
   VirtualDom.attribute "pointsAtX"
 
 
 {-|-}
-pointsAtY :: JSString -> Attribute
+pointsAtY :: JSString -> Property
 pointsAtY =
   VirtualDom.attribute "pointsAtY"
 
 
 {-|-}
-pointsAtZ :: JSString -> Attribute
+pointsAtZ :: JSString -> Property
 pointsAtZ =
   VirtualDom.attribute "pointsAtZ"
 
 
 {-|-}
-preserveAlpha :: JSString -> Attribute
+preserveAlpha :: JSString -> Property
 preserveAlpha =
   VirtualDom.attribute "preserveAlpha"
 
 
 {-|-}
-preserveAspectRatio :: JSString -> Attribute
+preserveAspectRatio :: JSString -> Property
 preserveAspectRatio =
   VirtualDom.attribute "preserveAspectRatio"
 
 
 {-|-}
-primitiveUnits :: JSString -> Attribute
+primitiveUnits :: JSString -> Property
 primitiveUnits =
   VirtualDom.attribute "primitiveUnits"
 
 
 {-|-}
-r :: JSString -> Attribute
+r :: JSString -> Property
 r =
   VirtualDom.attribute "r"
 
 
 {-|-}
-radius :: JSString -> Attribute
+radius :: JSString -> Property
 radius =
   VirtualDom.attribute "radius"
 
 
 {-|-}
-refX :: JSString -> Attribute
+refX :: JSString -> Property
 refX =
   VirtualDom.attribute "refX"
 
 
 {-|-}
-refY :: JSString -> Attribute
+refY :: JSString -> Property
 refY =
   VirtualDom.attribute "refY"
 
 
 {-|-}
-renderingIntent :: JSString -> Attribute
+renderingIntent :: JSString -> Property
 renderingIntent =
   VirtualDom.attribute "rendering-intent"
 
 
 {-|-}
-repeatCount :: JSString -> Attribute
+repeatCount :: JSString -> Property
 repeatCount =
   VirtualDom.attribute "repeatCount"
 
 
 {-|-}
-repeatDur :: JSString -> Attribute
+repeatDur :: JSString -> Property
 repeatDur =
   VirtualDom.attribute "repeatDur"
 
 
 {-|-}
-requiredExtensions :: JSString -> Attribute
+requiredExtensions :: JSString -> Property
 requiredExtensions =
   VirtualDom.attribute "requiredExtensions"
 
 
 {-|-}
-requiredFeatures :: JSString -> Attribute
+requiredFeatures :: JSString -> Property
 requiredFeatures =
   VirtualDom.attribute "requiredFeatures"
 
 
 {-|-}
-restart :: JSString -> Attribute
+restart :: JSString -> Property
 restart =
   VirtualDom.attribute "restart"
 
 
 {-|-}
-result :: JSString -> Attribute
+result :: JSString -> Property
 result =
   VirtualDom.attribute "result"
 
 
 {-|-}
-rotate :: JSString -> Attribute
+rotate :: JSString -> Property
 rotate =
   VirtualDom.attribute "rotate"
 
 
 {-|-}
-rx :: JSString -> Attribute
+rx :: JSString -> Property
 rx =
   VirtualDom.attribute "rx"
 
 
 {-|-}
-ry :: JSString -> Attribute
+ry :: JSString -> Property
 ry =
   VirtualDom.attribute "ry"
 
 
 {-|-}
-scale :: JSString -> Attribute
+scale :: JSString -> Property
 scale =
   VirtualDom.attribute "scale"
 
 
 {-|-}
-seed :: JSString -> Attribute
+seed :: JSString -> Property
 seed =
   VirtualDom.attribute "seed"
 
 
 {-|-}
-slope :: JSString -> Attribute
+slope :: JSString -> Property
 slope =
   VirtualDom.attribute "slope"
 
 
 {-|-}
-spacing :: JSString -> Attribute
+spacing :: JSString -> Property
 spacing =
   VirtualDom.attribute "spacing"
 
 
 {-|-}
-specularConstant :: JSString -> Attribute
+specularConstant :: JSString -> Property
 specularConstant =
   VirtualDom.attribute "specularConstant"
 
 
 {-|-}
-specularExponent :: JSString -> Attribute
+specularExponent :: JSString -> Property
 specularExponent =
   VirtualDom.attribute "specularExponent"
 
 
 {-|-}
-speed :: JSString -> Attribute
+speed :: JSString -> Property
 speed =
   VirtualDom.attribute "speed"
 
 
 {-|-}
-spreadMethod :: JSString -> Attribute
+spreadMethod :: JSString -> Property
 spreadMethod =
   VirtualDom.attribute "spreadMethod"
 
 
 {-|-}
-startOffset :: JSString -> Attribute
+startOffset :: JSString -> Property
 startOffset =
   VirtualDom.attribute "startOffset"
 
 
 {-|-}
-stdDeviation :: JSString -> Attribute
+stdDeviation :: JSString -> Property
 stdDeviation =
   VirtualDom.attribute "stdDeviation"
 
 
 {-|-}
-stemh :: JSString -> Attribute
+stemh :: JSString -> Property
 stemh =
   VirtualDom.attribute "stemh"
 
 
 {-|-}
-stemv :: JSString -> Attribute
+stemv :: JSString -> Property
 stemv =
   VirtualDom.attribute "stemv"
 
 
 {-|-}
-stitchTiles :: JSString -> Attribute
+stitchTiles :: JSString -> Property
 stitchTiles =
   VirtualDom.attribute "stitchTiles"
 
 
 {-|-}
-strikethroughPosition :: JSString -> Attribute
+strikethroughPosition :: JSString -> Property
 strikethroughPosition =
   VirtualDom.attribute "strikethrough-position"
 
 
 {-|-}
-strikethroughThickness :: JSString -> Attribute
+strikethroughThickness :: JSString -> Property
 strikethroughThickness =
   VirtualDom.attribute "strikethrough-thickness"
 
 
 {-|-}
-string :: JSString -> Attribute
+string :: JSString -> Property
 string =
   VirtualDom.attribute "string"
 
 
 {-|-}
-style :: JSString -> Attribute
+style :: JSString -> Property
 style =
   VirtualDom.attribute "style"
 
 
 {-|-}
-surfaceScale :: JSString -> Attribute
+surfaceScale :: JSString -> Property
 surfaceScale =
   VirtualDom.attribute "surfaceScale"
 
 
 {-|-}
-systemLanguage :: JSString -> Attribute
+systemLanguage :: JSString -> Property
 systemLanguage =
   VirtualDom.attribute "systemLanguage"
 
 
 {-|-}
-tableValues :: JSString -> Attribute
+tableValues :: JSString -> Property
 tableValues =
   VirtualDom.attribute "tableValues"
 
 
 {-|-}
-target :: JSString -> Attribute
+target :: JSString -> Property
 target =
   VirtualDom.attribute "target"
 
 
 {-|-}
-targetX :: JSString -> Attribute
+targetX :: JSString -> Property
 targetX =
   VirtualDom.attribute "targetX"
 
 
 {-|-}
-targetY :: JSString -> Attribute
+targetY :: JSString -> Property
 targetY =
   VirtualDom.attribute "targetY"
 
 
 {-|-}
-textLength :: JSString -> Attribute
+textLength :: JSString -> Property
 textLength =
   VirtualDom.attribute "textLength"
 
 
 {-|-}
-title :: JSString -> Attribute
+title :: JSString -> Property
 title =
   VirtualDom.attribute "title"
 
 
 {-|-}
-to :: JSString -> Attribute
+to :: JSString -> Property
 to =
   VirtualDom.attribute "to"
 
 
 {-|-}
-transform :: JSString -> Attribute
+transform :: JSString -> Property
 transform =
   VirtualDom.attribute "transform"
 
 
 {-|-}
-type' :: JSString -> Attribute
+type' :: JSString -> Property
 type' =
   VirtualDom.attribute "type"
 
 
 {-|-}
-u1 :: JSString -> Attribute
+u1 :: JSString -> Property
 u1 =
   VirtualDom.attribute "u1"
 
 
 {-|-}
-u2 :: JSString -> Attribute
+u2 :: JSString -> Property
 u2 =
   VirtualDom.attribute "u2"
 
 
 {-|-}
-underlinePosition :: JSString -> Attribute
+underlinePosition :: JSString -> Property
 underlinePosition =
   VirtualDom.attribute "underline-position"
 
 
 {-|-}
-underlineThickness :: JSString -> Attribute
+underlineThickness :: JSString -> Property
 underlineThickness =
   VirtualDom.attribute "underline-thickness"
 
 
 {-|-}
-unicode :: JSString -> Attribute
+unicode :: JSString -> Property
 unicode =
   VirtualDom.attribute "unicode"
 
 
 {-|-}
-unicodeRange :: JSString -> Attribute
+unicodeRange :: JSString -> Property
 unicodeRange =
   VirtualDom.attribute "unicode-range"
 
 
 {-|-}
-unitsPerEm :: JSString -> Attribute
+unitsPerEm :: JSString -> Property
 unitsPerEm =
   VirtualDom.attribute "units-per-em"
 
 
 {-|-}
-vAlphabetic :: JSString -> Attribute
+vAlphabetic :: JSString -> Property
 vAlphabetic =
   VirtualDom.attribute "v-alphabetic"
 
 
 {-|-}
-vHanging :: JSString -> Attribute
+vHanging :: JSString -> Property
 vHanging =
   VirtualDom.attribute "v-hanging"
 
 
 {-|-}
-vIdeographic :: JSString -> Attribute
+vIdeographic :: JSString -> Property
 vIdeographic =
   VirtualDom.attribute "v-ideographic"
 
 
 {-|-}
-vMathematical :: JSString -> Attribute
+vMathematical :: JSString -> Property
 vMathematical =
   VirtualDom.attribute "v-mathematical"
 
 
 {-|-}
-values :: JSString -> Attribute
+values :: JSString -> Property
 values =
   VirtualDom.attribute "values"
 
 
 {-|-}
-version :: JSString -> Attribute
+version :: JSString -> Property
 version =
   VirtualDom.attribute "version"
 
 
 {-|-}
-vertAdvY :: JSString -> Attribute
+vertAdvY :: JSString -> Property
 vertAdvY =
   VirtualDom.attribute "vert-adv-y"
 
 
 {-|-}
-vertOriginX :: JSString -> Attribute
+vertOriginX :: JSString -> Property
 vertOriginX =
   VirtualDom.attribute "vert-origin-x"
 
 
 {-|-}
-vertOriginY :: JSString -> Attribute
+vertOriginY :: JSString -> Property
 vertOriginY =
   VirtualDom.attribute "vert-origin-y"
 
 
 {-|-}
-viewBox :: JSString -> Attribute
+viewBox :: JSString -> Property
 viewBox =
   VirtualDom.attribute "viewBox"
 
 
 {-|-}
-viewTarget :: JSString -> Attribute
+viewTarget :: JSString -> Property
 viewTarget =
   VirtualDom.attribute "viewTarget"
 
 
 {-|-}
-width :: JSString -> Attribute
+width :: JSString -> Property
 width =
   VirtualDom.attribute "width"
 
 
 {-|-}
-widths :: JSString -> Attribute
+widths :: JSString -> Property
 widths =
   VirtualDom.attribute "widths"
 
 
 {-|-}
-x :: JSString -> Attribute
+x :: JSString -> Property
 x =
   VirtualDom.attribute "x"
 
 
 {-|-}
-xHeight :: JSString -> Attribute
+xHeight :: JSString -> Property
 xHeight =
   VirtualDom.attribute "x-height"
 
 
 {-|-}
-x1 :: JSString -> Attribute
+x1 :: JSString -> Property
 x1 =
   VirtualDom.attribute "x1"
 
 
 {-|-}
-x2 :: JSString -> Attribute
+x2 :: JSString -> Property
 x2 =
   VirtualDom.attribute "x2"
 
 
 {-|-}
-xChannelSelector :: JSString -> Attribute
+xChannelSelector :: JSString -> Property
 xChannelSelector =
   VirtualDom.attribute "xChannelSelector"
 
 
 {-|-}
-xlinkActuate :: JSString -> Attribute
+xlinkActuate :: JSString -> Property
 xlinkActuate =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:actuate"
 
 
 {-|-}
-xlinkArcrole :: JSString -> Attribute
+xlinkArcrole :: JSString -> Property
 xlinkArcrole =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:arcrole"
 
 
 {-|-}
-xlinkHref :: JSString -> Attribute
+xlinkHref :: JSString -> Property
 xlinkHref =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:href"
 
 
 {-|-}
-xlinkRole :: JSString -> Attribute
+xlinkRole :: JSString -> Property
 xlinkRole =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:role"
 
 
 {-|-}
-xlinkShow :: JSString -> Attribute
+xlinkShow :: JSString -> Property
 xlinkShow =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:show"
 
 
 {-|-}
-xlinkTitle :: JSString -> Attribute
+xlinkTitle :: JSString -> Property
 xlinkTitle =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:title"
 
 
 {-|-}
-xlinkType :: JSString -> Attribute
+xlinkType :: JSString -> Property
 xlinkType =
   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:type"
 
 
 {-|-}
-xmlBase :: JSString -> Attribute
+xmlBase :: JSString -> Property
 xmlBase =
   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:base"
 
 
 {-|-}
-xmlLang :: JSString -> Attribute
+xmlLang :: JSString -> Property
 xmlLang =
   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:lang"
 
 
 {-|-}
-xmlSpace :: JSString -> Attribute
+xmlSpace :: JSString -> Property
 xmlSpace =
   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:space"
 
 
 {-|-}
-y :: JSString -> Attribute
+y :: JSString -> Property
 y =
   VirtualDom.attribute "y"
 
 
 {-|-}
-y1 :: JSString -> Attribute
+y1 :: JSString -> Property
 y1 =
   VirtualDom.attribute "y1"
 
 
 {-|-}
-y2 :: JSString -> Attribute
+y2 :: JSString -> Property
 y2 =
   VirtualDom.attribute "y2"
 
 
 {-|-}
-yChannelSelector :: JSString -> Attribute
+yChannelSelector :: JSString -> Property
 yChannelSelector =
   VirtualDom.attribute "yChannelSelector"
 
 
 {-|-}
-z :: JSString -> Attribute
+z :: JSString -> Property
 z =
   VirtualDom.attribute "z"
 
 
 {-|-}
-zoomAndPan :: JSString -> Attribute
+zoomAndPan :: JSString -> Property
 zoomAndPan =
   VirtualDom.attribute "zoomAndPan"
 
@@ -1183,355 +1183,355 @@ zoomAndPan =
 -- Presentation VirtualDom.attributes
 
 {-|-}
-alignmentBaseline :: JSString -> Attribute
+alignmentBaseline :: JSString -> Property
 alignmentBaseline =
   VirtualDom.attribute "alignment-baseline"
 
 
 {-|-}
-baselineShift :: JSString -> Attribute
+baselineShift :: JSString -> Property
 baselineShift =
   VirtualDom.attribute "baseline-shift"
 
 
 {-|-}
-clipPath :: JSString -> Attribute
+clipPath :: JSString -> Property
 clipPath =
   VirtualDom.attribute "clip-path"
 
 
 {-|-}
-clipRule :: JSString -> Attribute
+clipRule :: JSString -> Property
 clipRule =
   VirtualDom.attribute "clip-rule"
 
 
 {-|-}
-clip :: JSString -> Attribute
+clip :: JSString -> Property
 clip =
   VirtualDom.attribute "clip"
 
 
 {-|-}
-colorInterpolationFilters :: JSString -> Attribute
+colorInterpolationFilters :: JSString -> Property
 colorInterpolationFilters =
   VirtualDom.attribute "color-interpolation-filters"
 
 
 {-|-}
-colorInterpolation :: JSString -> Attribute
+colorInterpolation :: JSString -> Property
 colorInterpolation =
   VirtualDom.attribute "color-interpolation"
 
 
 {-|-}
-colorProfile :: JSString -> Attribute
+colorProfile :: JSString -> Property
 colorProfile =
   VirtualDom.attribute "color-profile"
 
 
 {-|-}
-colorRendering :: JSString -> Attribute
+colorRendering :: JSString -> Property
 colorRendering =
   VirtualDom.attribute "color-rendering"
 
 
 {-|-}
-color :: JSString -> Attribute
+color :: JSString -> Property
 color =
   VirtualDom.attribute "color"
 
 
 {-|-}
-cursor :: JSString -> Attribute
+cursor :: JSString -> Property
 cursor =
   VirtualDom.attribute "cursor"
 
 
 {-|-}
-direction :: JSString -> Attribute
+direction :: JSString -> Property
 direction =
   VirtualDom.attribute "direction"
 
 
 {-|-}
-display :: JSString -> Attribute
+display :: JSString -> Property
 display =
   VirtualDom.attribute "display"
 
 
 {-|-}
-dominantBaseline :: JSString -> Attribute
+dominantBaseline :: JSString -> Property
 dominantBaseline =
   VirtualDom.attribute "dominant-baseline"
 
 
 {-|-}
-enableBackground :: JSString -> Attribute
+enableBackground :: JSString -> Property
 enableBackground =
   VirtualDom.attribute "enable-background"
 
 
 {-|-}
-fillOpacity :: JSString -> Attribute
+fillOpacity :: JSString -> Property
 fillOpacity =
   VirtualDom.attribute "fill-opacity"
 
 
 {-|-}
-fillRule :: JSString -> Attribute
+fillRule :: JSString -> Property
 fillRule =
   VirtualDom.attribute "fill-rule"
 
 
 {-|-}
-fill :: JSString -> Attribute
+fill :: JSString -> Property
 fill =
   VirtualDom.attribute "fill"
 
 
 {-|-}
-filter :: JSString -> Attribute
+filter :: JSString -> Property
 filter =
   VirtualDom.attribute "filter"
 
 
 {-|-}
-floodColor :: JSString -> Attribute
+floodColor :: JSString -> Property
 floodColor =
   VirtualDom.attribute "flood-color"
 
 
 {-|-}
-floodOpacity :: JSString -> Attribute
+floodOpacity :: JSString -> Property
 floodOpacity =
   VirtualDom.attribute "flood-opacity"
 
 
 {-|-}
-fontFamily :: JSString -> Attribute
+fontFamily :: JSString -> Property
 fontFamily =
   VirtualDom.attribute "font-family"
 
 
 {-|-}
-fontSizeAdjust :: JSString -> Attribute
+fontSizeAdjust :: JSString -> Property
 fontSizeAdjust =
   VirtualDom.attribute "font-size-adjust"
 
 
 {-|-}
-fontSize :: JSString -> Attribute
+fontSize :: JSString -> Property
 fontSize =
   VirtualDom.attribute "font-size"
 
 
 {-|-}
-fontStretch :: JSString -> Attribute
+fontStretch :: JSString -> Property
 fontStretch =
   VirtualDom.attribute "font-stretch"
 
 
 {-|-}
-fontStyle :: JSString -> Attribute
+fontStyle :: JSString -> Property
 fontStyle =
   VirtualDom.attribute "font-style"
 
 
 {-|-}
-fontVariant :: JSString -> Attribute
+fontVariant :: JSString -> Property
 fontVariant =
   VirtualDom.attribute "font-variant"
 
 
 {-|-}
-fontWeight :: JSString -> Attribute
+fontWeight :: JSString -> Property
 fontWeight =
   VirtualDom.attribute "font-weight"
 
 
 {-|-}
-glyphOrientationHorizontal :: JSString -> Attribute
+glyphOrientationHorizontal :: JSString -> Property
 glyphOrientationHorizontal =
   VirtualDom.attribute "glyph-orientation-horizontal"
 
 
 {-|-}
-glyphOrientationVertical :: JSString -> Attribute
+glyphOrientationVertical :: JSString -> Property
 glyphOrientationVertical =
   VirtualDom.attribute "glyph-orientation-vertical"
 
 
 {-|-}
-imageRendering :: JSString -> Attribute
+imageRendering :: JSString -> Property
 imageRendering =
   VirtualDom.attribute "image-rendering"
 
 
 {-|-}
-kerning :: JSString -> Attribute
+kerning :: JSString -> Property
 kerning =
   VirtualDom.attribute "kerning"
 
 
 {-|-}
-letterSpacing :: JSString -> Attribute
+letterSpacing :: JSString -> Property
 letterSpacing =
   VirtualDom.attribute "letter-spacing"
 
 
 {-|-}
-lightingColor :: JSString -> Attribute
+lightingColor :: JSString -> Property
 lightingColor =
   VirtualDom.attribute "lighting-color"
 
 
 {-|-}
-markerEnd :: JSString -> Attribute
+markerEnd :: JSString -> Property
 markerEnd =
   VirtualDom.attribute "marker-end"
 
 
 {-|-}
-markerMid :: JSString -> Attribute
+markerMid :: JSString -> Property
 markerMid =
   VirtualDom.attribute "marker-mid"
 
 
 {-|-}
-markerStart :: JSString -> Attribute
+markerStart :: JSString -> Property
 markerStart =
   VirtualDom.attribute "marker-start"
 
 
 {-|-}
-mask :: JSString -> Attribute
+mask :: JSString -> Property
 mask =
   VirtualDom.attribute "mask"
 
 
 {-|-}
-opacity :: JSString -> Attribute
+opacity :: JSString -> Property
 opacity =
   VirtualDom.attribute "opacity"
 
 
 {-|-}
-overflow :: JSString -> Attribute
+overflow :: JSString -> Property
 overflow =
   VirtualDom.attribute "overflow"
 
 
 {-|-}
-pointerEvents :: JSString -> Attribute
+pointerEvents :: JSString -> Property
 pointerEvents =
   VirtualDom.attribute "pointer-events"
 
 
 {-|-}
-shapeRendering :: JSString -> Attribute
+shapeRendering :: JSString -> Property
 shapeRendering =
   VirtualDom.attribute "shape-rendering"
 
 
 {-|-}
-stopColor :: JSString -> Attribute
+stopColor :: JSString -> Property
 stopColor =
   VirtualDom.attribute "stop-color"
 
 
 {-|-}
-stopOpacity :: JSString -> Attribute
+stopOpacity :: JSString -> Property
 stopOpacity =
   VirtualDom.attribute "stop-opacity"
 
 
 {-|-}
-strokeDasharray :: JSString -> Attribute
+strokeDasharray :: JSString -> Property
 strokeDasharray =
   VirtualDom.attribute "stroke-dasharray"
 
 
 {-|-}
-strokeDashoffset :: JSString -> Attribute
+strokeDashoffset :: JSString -> Property
 strokeDashoffset =
   VirtualDom.attribute "stroke-dashoffset"
 
 
 {-|-}
-strokeLinecap :: JSString -> Attribute
+strokeLinecap :: JSString -> Property
 strokeLinecap =
   VirtualDom.attribute "stroke-linecap"
 
 
 {-|-}
-strokeLinejoin :: JSString -> Attribute
+strokeLinejoin :: JSString -> Property
 strokeLinejoin =
   VirtualDom.attribute "stroke-linejoin"
 
 
 {-|-}
-strokeMiterlimit :: JSString -> Attribute
+strokeMiterlimit :: JSString -> Property
 strokeMiterlimit =
   VirtualDom.attribute "stroke-miterlimit"
 
 
 {-|-}
-strokeOpacity :: JSString -> Attribute
+strokeOpacity :: JSString -> Property
 strokeOpacity =
   VirtualDom.attribute "stroke-opacity"
 
 
 {-|-}
-strokeWidth :: JSString -> Attribute
+strokeWidth :: JSString -> Property
 strokeWidth =
   VirtualDom.attribute "stroke-width"
 
 
 {-|-}
-stroke :: JSString -> Attribute
+stroke :: JSString -> Property
 stroke =
   VirtualDom.attribute "stroke"
 
 
 {-|-}
-textAnchor :: JSString -> Attribute
+textAnchor :: JSString -> Property
 textAnchor =
   VirtualDom.attribute "text-anchor"
 
 
 {-|-}
-textDecoration :: JSString -> Attribute
+textDecoration :: JSString -> Property
 textDecoration =
   VirtualDom.attribute "text-decoration"
 
 
 {-|-}
-textRendering :: JSString -> Attribute
+textRendering :: JSString -> Property
 textRendering =
   VirtualDom.attribute "text-rendering"
 
 
 {-|-}
-unicodeBidi :: JSString -> Attribute
+unicodeBidi :: JSString -> Property
 unicodeBidi =
   VirtualDom.attribute "unicode-bidi"
 
 
 {-|-}
-visibility :: JSString -> Attribute
+visibility :: JSString -> Property
 visibility =
   VirtualDom.attribute "visibility"
 
 
 {-|-}
-wordSpacing :: JSString -> Attribute
+wordSpacing :: JSString -> Property
 wordSpacing =
   VirtualDom.attribute "word-spacing"
 
 
 {-|-}
-writingMode :: JSString -> Attribute
+writingMode :: JSString -> Property
 writingMode =
   VirtualDom.attribute "writing-mode"
 
