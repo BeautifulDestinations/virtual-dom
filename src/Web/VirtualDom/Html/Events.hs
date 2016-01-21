@@ -5,6 +5,15 @@ module Web.VirtualDom.Html.Events
     ( Event
     -- * Subscribing for events
     , onClick
+    , onChange
+    , onKeyup
+    , onSubmit
+
+    , click
+    , change
+    , keyup
+    , submit
+    
     -- * Inspecting Events
     -- ** General
     , stopPropagation
@@ -96,6 +105,21 @@ onKeyup = onE Event "keyup"
 
 onSubmit :: (Event -> IO ()) -> Property
 onSubmit = onE Event "submit"
+
+-- Alternate convention:
+
+click :: (Event -> IO ()) -> Property
+click = onE Event "click"
+
+change :: (Event -> IO ()) -> Property
+change = onE Event "change"
+
+keyup :: (Event -> IO ()) -> Property
+keyup = onE Event "keyup"
+
+submit :: (Event -> IO ()) -> Property
+submit = onE Event "submit"
+
 
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
