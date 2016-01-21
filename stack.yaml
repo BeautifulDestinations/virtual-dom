@@ -1,0 +1,9 @@
+flags: {}
+compiler: ghcjs-0.2.0_ghc-7.10.2
+packages:
+- '.'
+# - location:
+    # git: git@github.com:ghcjs/ghcjs-ffiqq.git
+    # commit: da31b18582542fcfceade5ef6b2aca66662b9e20
+extra-deps:
+resolver: nightly-2015-12-14

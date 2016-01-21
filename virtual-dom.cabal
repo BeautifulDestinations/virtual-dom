@@ -1,0 +1,41 @@
+name:                virtual-dom
+version:             0.1.0.0
+synopsis:            Virtual-dom bindings for GHCJS
+description:         Virtual-dom is a library for fast incremental DOM
+                     updates by comparing virtual immutable DOM trees to
+                     find a minimal number of changes to update the actual DOM.
+
+license:             MIT
+license-file:        LICENSE
+author:              Hans Hoglund
+maintainer:          hans@hanshoglund.se
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  jsbits/virtual-dom-wrapper.js
+
+library
+  js-sources:          jsbits/before.js
+                       jsbits/virtual-dom-out.js
+  ghcjs-options:       -Wall
+  exposed-modules:     Web.VirtualDom
+  build-depends:       base >=4.7 && < 5,
+                       ghc-prim,
+                       -- ghcjs-ffiqq,
+                       ghcjs-base >= 0.2.0.0,
+                       ghcjs-prim,
+                       containers
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+
+
+executable virtual-dom-example
+  Main-Is:             Main.hs
+  Default-Language:    Haskell2010
+  hs-source-dirs:      examples
+  Build-Depends:       base                >= 4    &&  < 5,
+                       -- ghcjs-ffiqq,
+                       virtual-dom,
+                       containers,
+                       ghcjs-base
+  ghcjs-Options:       -Wall
