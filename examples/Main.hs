@@ -6,22 +6,30 @@ import GHCJS.Types (JSVal, jsval)
 import Data.JSString
 import Web.VirtualDom
 import Control.Concurrent(threadDelay)
+import System.IO.Unsafe (unsafePerformIO)
 
 import qualified Web.VirtualDom.Html as E
 import qualified Web.VirtualDom.Html.Attributes as A
 
-foreign import javascript unsafe  "(function(){console.log($1)})"
-  sayCb :: JSString -> JSVal
+import GHCJS.Foreign.Callback as CB
+
+wrap k = unsafePerformIO $ do
+  cb <- CB.syncCallback1 CB.ThrowWouldBlock k
+  return $ jsval cb
+
+on n k = property ("on" <> n) $ wrap k
 
 main = do
   putStrLn "Hello!"
+
+
   let node1 = text "Hello DOM!"
 
 
   let node2 = E.div
             [ A.style "color:red"
-            , property "oncopy" (sayCb "copied")
-            , property "onclick" (sayCb "clicked")
+            , on "copy"  $ \_ -> print "copied!"
+            , on "click" $ \_ -> print "clicked!"
             ]
             [ E.div
               []
@@ -29,7 +37,7 @@ main = do
               , E.form
                 []
                 [ E.input [] [ E.text "Test" ]
-                ] 
+                ]
               ]
             ]
 
