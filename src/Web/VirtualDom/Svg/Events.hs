@@ -3,7 +3,7 @@
 
 module Web.VirtualDom.Svg.Events
     ( Event
-    , onBegin,
+    , onBegin
     , onEnd
     , onRepeat
     , onAbort
