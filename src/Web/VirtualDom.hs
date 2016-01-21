@@ -53,7 +53,7 @@ module Web.VirtualDom
     , renderingLoop
     ) where
 
-import Control.Monad(forM_)
+import Control.Monad(forM_, forever)
 import Data.Monoid
 
 import GHCJS.Types
@@ -198,10 +198,10 @@ foreign import javascript unsafe "document.body.appendChild($1);"
   appendToBody :: DOMNode -> IO ()
 
 -- | Repeatedly call the given function to produce a VDOM, then patch it into the given DOM node.
-renderingLoop :: (DOMNode -> IO ()) -> IO VD.Node -> IO ()
+renderingLoop :: (DOMNode -> IO ()) -> IO Node -> IO ()
 renderingLoop insertFirstDN k = do
   n1  <- k
-  dn1 <- VD.createElement node1
+  dn1 <- createElement n1
   nV  <- newIORef n1
   dnV <- newIORef dn1
 
