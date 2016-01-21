@@ -24,7 +24,7 @@ module Web.VirtualDom.Html
     , figure
     , hr
     , li
-    , main
+    -- , main
     , ol
     , p
     , pre
@@ -44,7 +44,7 @@ module Web.VirtualDom.Html
     , q
     , rp
     , rt
-    , rtc
+    -- , rtc
     , ruby
     , s
     , samp
@@ -70,7 +70,7 @@ module Web.VirtualDom.Html
     , source
     , canvas
     -- , noscript
-    , script
+    -- , script
     , del
     , ins
     , caption
@@ -99,19 +99,19 @@ module Web.VirtualDom.Html
     , select
     , textarea
     , details
-    , dialog
+    -- , dialog
     , menu
     , menuitem
     , summary
-    , content
-    , element
-    , shadow
-    , template
+    -- , content
+    -- , element
+    -- , shadow
+    -- , template
     )
     where
 
-import Prelude hiding (div)
-import Data.JSString
+import Prelude hiding (div, span)
+import Data.JSString hiding (span)
 import qualified Web.VirtualDom as VirtualDom
 
 type Html = VirtualDom.Node
