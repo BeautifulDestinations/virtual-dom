@@ -1083,64 +1083,64 @@ xChannelSelector =
   VirtualDom.attribute "xChannelSelector"
 
 
-{-|-}
-xlinkActuate :: JSString -> Property
-xlinkActuate =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:actuate"
-
-
-{-|-}
-xlinkArcrole :: JSString -> Property
-xlinkArcrole =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:arcrole"
-
-
-{-|-}
-xlinkHref :: JSString -> Property
-xlinkHref =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:href"
-
-
-{-|-}
-xlinkRole :: JSString -> Property
-xlinkRole =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:role"
-
-
-{-|-}
-xlinkShow :: JSString -> Property
-xlinkShow =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:show"
-
-
-{-|-}
-xlinkTitle :: JSString -> Property
-xlinkTitle =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:title"
-
-
-{-|-}
-xlinkType :: JSString -> Property
-xlinkType =
-  VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:type"
-
-
-{-|-}
-xmlBase :: JSString -> Property
-xmlBase =
-  VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:base"
-
-
-{-|-}
-xmlLang :: JSString -> Property
-xmlLang =
-  VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:lang"
-
-
-{-|-}
-xmlSpace :: JSString -> Property
-xmlSpace =
-  VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:space"
+-- {-|-}
+-- xlinkActuate :: JSString -> Property
+-- xlinkActuate =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:actuate"
+--
+--
+-- {-|-}
+-- xlinkArcrole :: JSString -> Property
+-- xlinkArcrole =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:arcrole"
+--
+--
+-- {-|-}
+-- xlinkHref :: JSString -> Property
+-- xlinkHref =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:href"
+--
+--
+-- {-|-}
+-- xlinkRole :: JSString -> Property
+-- xlinkRole =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:role"
+--
+--
+-- {-|-}
+-- xlinkShow :: JSString -> Property
+-- xlinkShow =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:show"
+--
+--
+-- {-|-}
+-- xlinkTitle :: JSString -> Property
+-- xlinkTitle =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:title"
+--
+--
+-- {-|-}
+-- xlinkType :: JSString -> Property
+-- xlinkType =
+--   VirtualDom.attributeNS "http://www.w3.org/1999/xlink" "xlink:type"
+--
+--
+-- {-|-}
+-- xmlBase :: JSString -> Property
+-- xmlBase =
+--   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:base"
+--
+--
+-- {-|-}
+-- xmlLang :: JSString -> Property
+-- xmlLang =
+--   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:lang"
+--
+--
+-- {-|-}
+-- xmlSpace :: JSString -> Property
+-- xmlSpace =
+--   VirtualDom.attributeNS "http://www.w3.org/XML/1998/namespace" "xml:space"
 
 
 {-|-}
