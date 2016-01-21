@@ -16,3 +16,12 @@ To rebuild this with a newer version of virtual-dom:
   version of virtual-dom).
 2. Run `npm install`
 3. Run `./rebuild.sh`
+
+## TODO
+
+- Finish SVG
+- Test
+- Better granularity with Event Types (where is this documented w.r.t. standard DOM?)
+- Prevent abstraction leaks:
+  - No use of Show in class constraints
+- Various optimizations
