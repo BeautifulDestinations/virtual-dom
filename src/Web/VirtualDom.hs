@@ -50,6 +50,7 @@ module Web.VirtualDom
 
     -- ** Utility
     , appendToBody
+    , renderingLoop
     ) where
 
 import Control.Monad(forM_)
@@ -63,6 +64,7 @@ import qualified GHCJS.Foreign as F
 import qualified JavaScript.Array as A
 import qualified JavaScript.Object as O
 import System.IO.Unsafe (unsafePerformIO)
+import Data.IORef
 
 -- TODO wrap these in newtypes
 
@@ -194,3 +196,25 @@ foreign import javascript unsafe "h$vdom.patch($1,$2)"
 -- | Append the given node to @document.body@.
 foreign import javascript unsafe "document.body.appendChild($1);"
   appendToBody :: DOMNode -> IO ()
+
+-- | Repeatedly call the given function to produce a VDOM, then patch it into the given DOM node.
+renderingLoop :: (DOMNode -> IO ()) -> IO VD.Node -> IO ()
+renderingLoop insertFirstDN k = do
+  n1  <- k
+  dn1 <- VD.createElement node1
+  nV  <- newIORef n1
+  dnV <- newIORef dn1
+
+  insertFirstDN dn1
+
+  forever $ do
+      newNode <- k
+      oldNode <- readIORef nV
+
+      delta <- diff oldNode newNode
+
+      oldDomNode <- readIORef dnV
+      newDomNode <- patch oldDomNode delta
+
+      writeIORef nV newNode
+      writeIORef dnV newDomNode
