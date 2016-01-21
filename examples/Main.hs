@@ -20,7 +20,7 @@ main = do
   let node2 = E.div
             [ A.style "color:red"
             , on "copy"  $ \_ -> print "copied!"
-            , Ev.onclick $ \_ -> print "div clicked!"
+            , Ev.onClick $ \_ -> print "div clicked!"
             ]
             [ E.div
               []
@@ -31,7 +31,7 @@ main = do
                 [ E.input
                   [ A.type_ "number"
                   , A.value "2"
-                  , Ev.onclick $ \_ -> print "number clicked!"
+                  , Ev.onClick $ \_ -> print "number clicked!"
                   ] []
                 , E.input [A.type_ "range", A.min 0, A.max 10, A.value "2"] []
                 , E.input [] []

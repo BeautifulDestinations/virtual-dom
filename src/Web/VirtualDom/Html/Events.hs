@@ -3,10 +3,13 @@
 
 module Web.VirtualDom.Html.Events
     ( Event
+    -- * Subscribing for events
+    , onClick
+    -- * Inspecting Events
+    -- ** General
     , stopPropagation
     , stopImmediatePropagation
     , preventDefault
-    , onclick
     , value
     ) where
 
@@ -82,12 +85,13 @@ foreign import javascript unsafe "$1.preventDefault()"
 -- clientY = er $ \e -> [jsu'| `e.clientY|0 |]
 -- {-# INLINE clientY #-}
 
-onclick :: (Event -> IO ()) -> Property
-onclick = VirtualDom.on "click" . contramapS (Event)
+onClick :: (Event -> IO ()) -> Property
+onClick = onE Event "click"
 
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
   value :: Event -> JSString
 
-
-contramapS f k x = k (f x)
+onE e n = VirtualDom.on n . contramapS e
+  where
+    contramapS f k x = k (f x)
