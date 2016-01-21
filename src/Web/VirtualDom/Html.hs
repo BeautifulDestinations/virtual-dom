@@ -1,11 +1,16 @@
 
 {-# LANGUAGE OverloadedStrings #-}
 
+{-|
+
+Create HTML elements based on virtual DOM.
+
+-}
 module Web.VirtualDom.Html
     ( Html
     , Property
     , text
-    
+
     , address
     , article
     , body
@@ -118,7 +123,16 @@ import Prelude hiding (div, span)
 import Data.JSString hiding (span)
 import qualified Web.VirtualDom as VirtualDom
 
+-- | A node representing a HTML element.
 type Html = VirtualDom.Node
+
+-- | A property or attribute in an HTML tree.
+--
+-- See:
+--
+-- * "Web.VirtualDom.Html.Attributes"
+-- * "Web.VirtualDom.Html.Events"
+--
 type Property = VirtualDom.Property
 
 node :: JSString -> [Property] -> [Html] -> Html
