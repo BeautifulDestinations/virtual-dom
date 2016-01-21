@@ -28,11 +28,11 @@ module Web.VirtualDom
       Node
     , text
     , node
-    , node'
+    , nodeWithOptions
 
     -- ** Properties
     , Property
-    -- *** Properties and attributes
+    -- *** Properties vs. attributes
     -- $propsVsAttributes
     , property
     , attribute
@@ -51,8 +51,12 @@ module Web.VirtualDom
     ) where
 
 import Control.Monad(forM_)
+import Data.Monoid
+
 import GHCJS.Types
 import Data.JSString
+
+import GHCJS.Foreign.Callback as CB
 import qualified GHCJS.Foreign as F
 import qualified JavaScript.Array as A
 import qualified JavaScript.Object as O
@@ -61,43 +65,42 @@ import System.IO.Unsafe (unsafePerformIO)
 -- TODO wrap these in newtypes
 
 -- | A node in the virtual DOM.
-type Node = JSVal
+newtype Node = Node { getNode :: JSVal }
 
 -- | Propety of a node. Create using 'attribute' or 'property'.
 data Property = Property JSString JSVal | Attribute JSString JSVal
 
 -- | A node in the real DOM.
 
-type DOMNode = JSVal
+newtype DOMNode = DOMNode JSVal
 
 -- | Difference between two virtual DOM nodes.
-type Patch = JSVal
+newtype Patch = Patch JSVal
 
 -- | Create a text node.
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
--- | Create a node from a name and list of properties and children.
+-- | Create a tree node.
 node
   :: JSString     -- ^ Tag name
   -> [Property]   -- ^ Properties
   -> [Node]       -- ^ Child nodes
   -> Node
-node = node' Nothing Nothing
+node = nodeWithOptions Nothing Nothing
 
--- | Full version of 'node'.
--- Useful if you need to set the XML namespace, as in the case of SVG.
-node'
+-- | Full version of 'node'. Useful whenever you need to set the XML namespace, as in the case of SVG.
+nodeWithOptions
   :: Maybe JSString   -- ^ Optional key
   -> Maybe JSString   -- ^ Optional namespace
   -> JSString         -- ^ Tag name
   -> [Property]       -- ^ Properties
   -> [Node]           -- ^ Child nodes
   -> Node
-node' key namespace tagName properties children =
+nodeWithOptions key namespace tagName properties children =
   primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
-    c = jsval $ A.fromList children
+    c = jsval $ A.fromList $ fmap getNode children
     p = jsval $ unsafePerformIO $ do
       attrs <- O.create
       props <- O.create
@@ -140,7 +143,12 @@ attribute n x = Attribute n (jsval x)
 
 -- TODO wrap with decoder, allow Options as per below
 on :: JSString -> (JSVal -> IO ()) -> Property
-[on] = undefined
+on n k = property ("on" <> n) $ wrap k
+
+wrap k = unsafePerformIO $ do
+  cb <- CB.syncCallback1 CB.ThrowWouldBlock k
+  return $ jsval cb
+
 
 
 foreign import javascript unsafe "h$vdom.createElement($1)"
