@@ -9,6 +9,7 @@ import Control.Concurrent(threadDelay)
 
 import qualified Web.VirtualDom.Html as E
 import qualified Web.VirtualDom.Html.Attributes as A
+import qualified Web.VirtualDom.Html.Events as Ev
 
 main = do
   putStrLn "Hello!"
@@ -19,7 +20,7 @@ main = do
   let node2 = E.div
             [ A.style "color:red"
             , on "copy"  $ \_ -> print "copied!"
-            , on "click" $ \_ -> print "clicked!"
+            , Ev.onclick $ \_ -> print "div clicked!"
             ]
             [ E.div
               []
@@ -27,7 +28,11 @@ main = do
               , E.h2 [] $ pure $ E.text "Hi!"
               , E.form
                 []
-                [ E.input [A.type_ "number", A.value "2"] []
+                [ E.input
+                  [ A.type_ "number"
+                  , A.value "2"
+                  , Ev.onclick $ \_ -> print "number clicked!"
+                  ] []
                 , E.input [A.type_ "range", A.min 0, A.max 10, A.value "2"] []
                 , E.input [] []
                 ]
