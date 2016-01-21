@@ -2,7 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 module Web.VirtualDom.Html
-    ( address
+    ( Html
+    , Property
+    , address
     , article
     , body
     , footer

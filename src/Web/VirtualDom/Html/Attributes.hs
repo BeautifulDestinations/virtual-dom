@@ -1,5 +1,5 @@
 
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, NoMonomorphismRestriction #-}
 
 module Web.VirtualDom.Html.Attributes
     ( id
@@ -22,6 +22,7 @@ module Web.VirtualDom.Html.Attributes
     )
     where
 
+import Prelude hiding (id)
 -- import Json.Encode as Json
 import Data.JSString
 import qualified Web.VirtualDom as VirtualDom
