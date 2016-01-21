@@ -24,4 +24,7 @@ To rebuild this with a newer version of virtual-dom:
 - Better granularity with Event Types (where is this documented w.r.t. standard DOM?)
 - Prevent abstraction leaks:
   - No use of Show in class constraints
-- Various optimizations
+- Possible optimizations:
+  - Do not use Show internally
+  - Trim nodeWithOptions
+- Assure `on` does not leak (or leaks are not a problem)
