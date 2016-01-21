@@ -33,11 +33,18 @@ attributeNS :: JSString -> JSString -> JSString -> Property
 -- TODO wrap with decoder, allow Options as per below
 on :: JSString -> (JSVal -> IO ()) -> Property
 
-createElement :: Node -> IO DOMNode
-diff :: Node -> Node -> IO Patch
-patch :: DOMNode -> Patch -> IO DOMNode
+foreign import javascript unsafe "h$vdom.createElement($1)"
+  createElement :: Node -> IO DOMNode
 
-[node, text, property, attribute, attributeNS, on, createElement, diff, patch] = undefined
+foreign import javascript unsafe "h$vdom.diff($1,$2)"
+  diff :: Node -> Node -> IO Patch
+
+foreign import javascript unsafe "h$vdom.patch($1,$2)"
+  patch :: DOMNode -> Patch -> IO DOMNode
+
+
+
+[node, text, property, attribute, attributeNS, on] = undefined
 
 
   -- //
