@@ -25,7 +25,6 @@ module Web.VirtualDom.Html.Attributes
     where
 
 import Prelude hiding (id, min, max)
--- import Json.Encode as Json
 import Data.JSString
 
 import Web.VirtualDom.Html (Property)

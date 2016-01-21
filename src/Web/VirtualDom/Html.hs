@@ -2,15 +2,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 {-|
-
 Create HTML elements based on virtual DOM.
-
 -}
 module Web.VirtualDom.Html
     ( Html
     , Property
     , text
-
+    , node
+    
+    -- * Standard elements
     , address
     , article
     , body
