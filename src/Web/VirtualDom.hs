@@ -22,18 +22,24 @@ Does currently not support:
 -}
 
 module Web.VirtualDom
-    --  ** Nodes and properties
-    ( Node
-    , Property
+    (
+    -- * Building the virtual DOM
+    -- ** Nodes
+      Node
+    , text
     , node
     , node'
-    , text
+
+    -- ** Properties
+    , Property
+    -- *** Properties and attributes
+    -- $propsVsAttributes
+    , property
     , attribute
     -- , attributeNS
-    , property
     , on
 
-    -- ** Rendering to DOM
+    -- * Rendering to DOM
     , DOMNode
     , Patch
     , createElement
@@ -67,10 +73,11 @@ type DOMNode = JSVal
 -- | Difference between two virtual DOM nodes.
 type Patch = JSVal
 
+-- | Create a text node.
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
--- | tagName properties nodes
+-- | Create a node from a name and list of properties and children.
 node
   :: JSString     -- ^ Tag name
   -> [Property]   -- ^ Properties
@@ -78,7 +85,8 @@ node
   -> Node
 node = node' Nothing Nothing
 
--- | key? namespace? tagName properties nodes
+-- | Full version of 'node'.
+-- Useful if you need to set the XML namespace, as in the case of SVG.
 node'
   :: Maybe JSString   -- ^ Optional key
   -> Maybe JSString   -- ^ Optional namespace
@@ -103,15 +111,26 @@ node' key namespace tagName properties children =
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
--- | A virtual node property.
+-- $propsVsAttributes
 --
--- These map to @attribute.key = value@ in virtual DOM.
+-- When using HTML and JS, there are two ways to specify parts of a DOM node.
+--
+--   1. Attributes - You can set things in HTML itself. So the @class@
+--      in @\<div class="greeting"\>\<\/div\>@ is called an /attribute/.
+--
+--   2. Properties - You can also set things in JS. So the @className@
+--      in @div.className = 'greeting'@ is called a /property/.
+--
+-- So the @class@ attribute corresponds to the @className@ property.
+
+-- | A virtual node /property/.
+--
 property :: JSString -> JSVal -> Property
 property = Property
 
--- | A virtual node attribute.
+-- | A virtual node /attribute/.
 --
--- These map to @attribute.key = value@ in virtual DOM.
+-- Map to @setAttribute@ in JavaScript.
 attribute :: JSString -> JSString -> Property
 attribute n x = Attribute n (jsval x)
 
