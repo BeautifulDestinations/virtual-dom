@@ -37,6 +37,8 @@ module Web.VirtualDom
     , property
     , attribute
     -- , attributeNS
+
+    -- ** Events
     , on
 
     -- * Rendering to DOM
@@ -78,10 +80,14 @@ newtype DOMNode = DOMNode JSVal
 newtype Patch = Patch JSVal
 
 -- | Create a text node.
+--
+-- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vtext.md#vtext
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
 -- | Create a tree node.
+--
+-- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vnode.md#vnode
 node
   :: JSString     -- ^ Tag name
   -> [Property]   -- ^ Properties
@@ -104,7 +110,7 @@ nodeWithOptions key namespace tagName properties children =
     p = jsval $ unsafePerformIO $ do
       attrs <- O.create
       props <- O.create
-      forM_ properties $ \p -> case p of
+      forM_ properties $ \prop -> case prop of
         Property k v  -> O.setProp k v props
         Attribute k v -> O.setProp k v attrs
       -- user is not expected to pass attributes not created using 'attribute' below
@@ -128,6 +134,9 @@ foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
 
 -- | A virtual node /property/.
 --
+-- You can give any JavaScript object accepted by virtual-dom as the value,
+-- including event callbacks and hooks. See the virtual-dom documentation for details.
+--
 property :: JSString -> JSVal -> Property
 property = Property
 
@@ -145,7 +154,7 @@ attribute n x = Attribute n (jsval x)
 -- An event listener as a property.
 --
 -- @
--- on "click" $ \_ -> print "Clicked!"
+-- on "click" $ \\_ -> print "Clicked!"
 -- @
 --
 -- First argument is attribute name without 'on'.
@@ -164,15 +173,24 @@ on n k = property ("on" <> n) $ wrap k
       return $ jsval cb
 
 
-
+-- | Create a real DOM tree from a virtual DOM tree.
+--
+-- https://github.com/Matt-Esch/virtual-dom#element-creation
 foreign import javascript unsafe "h$vdom.createElement($1)"
   createElement :: Node -> IO DOMNode
 
+-- | Compute the difference between two virtual DOM trees.
+--
+-- https://github.com/Matt-Esch/virtual-dom#diff-computation
 foreign import javascript unsafe "h$vdom.diff($1,$2)"
   diff :: Node -> Node -> IO Patch
 
+-- | Apply patches to a DOM tree.
+--
+-- https://github.com/Matt-Esch/virtual-dom#patch-operations
 foreign import javascript unsafe "h$vdom.patch($1,$2)"
   patch :: DOMNode -> Patch -> IO DOMNode
 
+-- | Append the given node to @document.body@.
 foreign import javascript unsafe "document.body.appendChild($1);"
   appendToBody :: DOMNode -> IO ()
