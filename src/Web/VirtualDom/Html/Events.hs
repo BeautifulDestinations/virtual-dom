@@ -88,6 +88,15 @@ foreign import javascript unsafe "$1.preventDefault()"
 onClick :: (Event -> IO ()) -> Property
 onClick = onE Event "click"
 
+onChange :: (Event -> IO ()) -> Property
+onChange = onE Event "change"
+
+onKeyup :: (Event -> IO ()) -> Property
+onKeyup = onE Event "keyup"
+
+onSubmit :: (Event -> IO ()) -> Property
+onSubmit = onE Event "submit"
+
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
   value :: Event -> JSString
