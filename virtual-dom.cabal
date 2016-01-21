@@ -19,6 +19,12 @@ library
                        jsbits/virtual-dom-out.js
   ghcjs-options:       -Wall
   exposed-modules:     Web.VirtualDom
+                       Web.VirtualDom.Html
+                       Web.VirtualDom.Html.Attributes
+                       Web.VirtualDom.Html.Events
+                       Web.VirtualDom.Svg
+                       Web.VirtualDom.Svg.Attributes
+                       Web.VirtualDom.Svg.Events
   build-depends:       base >=4.7 && < 5,
                        ghc-prim,
                        -- ghcjs-ffiqq,
