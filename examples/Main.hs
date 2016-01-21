@@ -18,7 +18,7 @@ wrap k = unsafePerformIO $ do
   cb <- CB.syncCallback1 CB.ThrowWouldBlock k
   return $ jsval cb
 
-on n k = property ("on" <> n) $ wrap k
+on' n k = property ("on" <> n) $ wrap k
 
 main = do
   putStrLn "Hello!"
@@ -29,15 +29,18 @@ main = do
 
   let node2 = E.div
             [ A.style "color:red"
-            , on "copy"  $ \_ -> print "copied!"
-            , on "click" $ \_ -> print "clicked!"
+            , on' "copy"  $ \_ -> print "copied!"
+            , on' "click" $ \_ -> print "clicked!"
             ]
             [ E.div
               []
               [ E.h1 [] $ pure $ E.text "Hello different text!"
+              , E.h2 [] $ pure $ E.text "Hi!"
               , E.form
                 []
-                [ E.input [] [ E.text "Test" ]
+                [ E.input [A.type_ "number", A.value "2"] []
+                , E.input [A.type_ "range", A.min 0, A.max 10, A.value "2"] []
+                , E.input [] []
                 ]
               ]
             ]

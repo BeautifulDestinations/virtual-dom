@@ -16,13 +16,15 @@ module Web.VirtualDom.Html.Attributes
     , key
     , width
     , height
+    , min
+    , max
 
     , class_
     , type_
     )
     where
 
-import Prelude hiding (id)
+import Prelude hiding (id, min, max)
 -- import Json.Encode as Json
 import Data.JSString
 import qualified Web.VirtualDom as VirtualDom
@@ -41,6 +43,8 @@ value = VirtualDom.attribute "value"
 class_ = VirtualDom.attribute "className"
 type_ = VirtualDom.attribute "type"
 
+min = VirtualDom.attribute "min" . showJS
+max = VirtualDom.attribute "max" . showJS
 key = VirtualDom.attribute "key" . showJS
 width = VirtualDom.attribute "width" . showJS
 height = VirtualDom.attribute "height" . showJS
