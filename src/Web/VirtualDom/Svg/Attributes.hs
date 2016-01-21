@@ -142,8 +142,8 @@ capHeight =
 
 
 {-|-}
-class :: JSString -> Attribute
-class =
+class_ :: JSString -> Attribute
+class_ =
   attribute "class"
 
 
