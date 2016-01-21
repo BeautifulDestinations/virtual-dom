@@ -61,7 +61,7 @@ value :: JSString -> Property
 value = VirtualDom.attribute "value"
 
 class_ :: JSString -> Property
-class_ = VirtualDom.attribute "className"
+class_ = VirtualDom.attribute "class"
 
 type_ :: JSString -> Property
 type_ = VirtualDom.attribute "type"
