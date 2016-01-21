@@ -1,4 +1,6 @@
 
+{-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings #-}
+
 module Web.VirtualDom
     ( Node
     , Property
@@ -12,26 +14,34 @@ module Web.VirtualDom
     , createElement
     , diff
     , patch
+
+    , utilPutInBody
     ) where
 
 import GHCJS.Types
 import Data.JSString
 
+-- TODO wrap these in newtypes
+
 -- | Virtual DOM node, aka VTree.
-data Node
-data Property
-data DOMNode
+type Node = JSVal
+type Property = JSVal
+type DOMNode = JSVal
 -- | Difference between DOM nodes, aka PatchObject.
-data Patch
+type Patch = JSVal
 
 node :: JSString -> [Property] -> [Node] -> Node
-text :: JSString -> Node
+foreign import javascript "h$vdom.text($1)"
+  text :: JSString -> Node
 property :: JSString -> JSVal -> Property
 attribute :: JSString -> JSString -> Property
 attributeNS :: JSString -> JSString -> JSString -> Property
 
 -- TODO wrap with decoder, allow Options as per below
 on :: JSString -> (JSVal -> IO ()) -> Property
+
+foreign import javascript unsafe "document.body.appendChild($1);"
+  utilPutInBody :: DOMNode -> IO ()
 
 foreign import javascript unsafe "h$vdom.createElement($1)"
   createElement :: Node -> IO DOMNode
@@ -44,7 +54,7 @@ foreign import javascript unsafe "h$vdom.patch($1,$2)"
 
 
 
-[node, text, property, attribute, attributeNS, on] = undefined
+[node, property, attribute, attributeNS, on] = undefined
 
 
   -- //

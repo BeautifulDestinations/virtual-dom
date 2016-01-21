@@ -1,4 +1,9 @@
 
+{-# LANGUAGE OverloadedStrings #-}
+
 import Web.VirtualDom
 
-main = putStrLn "Hello!"
+main = do
+  putStrLn "Hello!"
+  root <- createElement (text "Hello DOM!")
+  utilPutInBody root
