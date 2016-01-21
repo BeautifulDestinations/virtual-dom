@@ -5,13 +5,14 @@
 Create SVG elements based on virtual DOM.
 -}
 module Web.VirtualDom.Svg
-    ( Svg
-    , Property
-    , text
-    , node
-    -- * Specific
-
-    ) where
+    -- ( Svg
+    -- , Property
+    -- , text
+    -- , node
+    -- -- * Specific
+    --
+    -- )
+    where
 
 import Prelude hiding (div, span)
 import Data.JSString hiding (span)
