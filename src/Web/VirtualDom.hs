@@ -171,7 +171,7 @@ on n k = property ("on" <> n) $ wrap k
   where
     -- TODO this will leak everything referenced by the callback.
     wrap k = unsafePerformIO $ do
-      cb <- CB.asyncCallback1 k
+      cb <- CB.syncCallback1 CB.ThrowWouldBlock k
       return $ jsval cb
 
 
