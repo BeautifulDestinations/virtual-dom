@@ -8,17 +8,17 @@ See https://github.com/Matt-Esch/virtual-dom/tree/master/docs
 
 Supports:
 
+  - Properties, attributes, nodes and text
+  - Hooks
+  - Node keys
+  - Namespaced nodes
   - @create-element@, @diff@ and @patch@
-  - @VNode@, @VText@ and @Hooks@
-  - Namespaces
 
 Does currently not support:
 
   - Thunks
   - Widgets
   - Namespaced attributes
-  - VNode keys
-
 -}
 
 module Web.VirtualDom
@@ -40,7 +40,8 @@ module Web.VirtualDom
     , diff
     , patch
 
-    , utilPutInBody
+    -- ** Utility
+    , appendToBody
     ) where
 
 import Control.Monad(forM_)
@@ -53,28 +54,38 @@ import System.IO.Unsafe (unsafePerformIO)
 
 -- TODO wrap these in newtypes
 
--- | Virtual DOM node, aka VTree.
--- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vtext.md
--- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vnode.md
+-- | A node in the virtual DOM.
 type Node = JSVal
 
--- note that (Property "attributes") is overwritten here!
+-- | Propety of a node. Create using 'attribute' or 'property'.
 data Property = Property JSString JSVal | Attribute JSString JSVal
 
--- | A DOM node.
+-- | A node in the real DOM.
+
 type DOMNode = JSVal
--- | Difference between DOM nodes, aka PatchObject.
+
+-- | Difference between two virtual DOM nodes.
 type Patch = JSVal
 
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
 -- | tagName properties nodes
-node :: JSString -> [Property] -> [Node] -> Node
+node
+  :: JSString     -- ^ Tag name
+  -> [Property]   -- ^ Properties
+  -> [Node]       -- ^ Child nodes
+  -> Node
 node = node' Nothing Nothing
 
 -- | key? namespace? tagName properties nodes
-node' :: Maybe JSString -> Maybe JSString -> JSString -> [Property] -> [Node] -> Node
+node'
+  :: Maybe JSString   -- ^ Optional key
+  -> Maybe JSString   -- ^ Optional namespace
+  -> JSString         -- ^ Tag name
+  -> [Property]       -- ^ Properties
+  -> [Node]           -- ^ Child nodes
+  -> Node
 node' key namespace tagName properties children =
   primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
@@ -92,26 +103,15 @@ node' key namespace tagName properties children =
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
-{-
-basically, we need to call
-  return new VNode(tagName, props, contents, key, namespace);
-
-  tagName is name of node (h1, div etc)
-  props is the list of properties
-    all attributes should be a in the subobject props.attributes
-
-  children is self-explanatory
-  key and namespace are "special" properties
-
-
--}
-
-
-
-
+-- | A virtual node property.
+--
+-- These map to @attribute.key = value@ in virtual DOM.
 property :: JSString -> JSVal -> Property
 property = Property
 
+-- | A virtual node attribute.
+--
+-- These map to @attribute.key = value@ in virtual DOM.
 attribute :: JSString -> JSString -> Property
 attribute n x = Attribute n (jsval x)
 
@@ -121,10 +121,7 @@ attribute n x = Attribute n (jsval x)
 
 -- TODO wrap with decoder, allow Options as per below
 on :: JSString -> (JSVal -> IO ()) -> Property
-
 [on] = undefined
-
-
 
 
 foreign import javascript unsafe "h$vdom.createElement($1)"
@@ -137,14 +134,4 @@ foreign import javascript unsafe "h$vdom.patch($1,$2)"
   patch :: DOMNode -> Patch -> IO DOMNode
 
 foreign import javascript unsafe "document.body.appendChild($1);"
-  utilPutInBody :: DOMNode -> IO ()
-
-
-
-
-
-  -- //
-  -- // data Options =
-  -- //     { stopPropagation : Bool
-  -- //     , preventDefault : Bool }
-  -- //
+  appendToBody :: DOMNode -> IO ()

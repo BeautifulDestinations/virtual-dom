@@ -4,6 +4,8 @@
 module Web.VirtualDom.Html
     ( Html
     , Property
+    , text
+    
     , address
     , article
     , body
