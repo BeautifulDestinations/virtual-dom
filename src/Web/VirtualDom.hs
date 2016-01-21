@@ -1,7 +1,7 @@
 
 {-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings #-}
 
-{-
+{-|
 Low level bindings to virtual-dom.
 
 See https://github.com/Matt-Esch/virtual-dom/tree/master/docs
@@ -22,15 +22,19 @@ Does currently not support:
 -}
 
 module Web.VirtualDom
+    --  ** Nodes and properties
     ( Node
     , Property
-    , DOMNode
-    , Patch
     , node
     , text
     , attribute
     -- , attributeNS
+    , property
     , on
+
+    -- ** Rendering to DOM
+    , DOMNode
+    , Patch
     , createElement
     , diff
     , patch
@@ -38,8 +42,13 @@ module Web.VirtualDom
     , utilPutInBody
     ) where
 
+import Control.Monad(forM_)
 import GHCJS.Types
 import Data.JSString
+import qualified GHCJS.Foreign as F
+import qualified JavaScript.Array as A
+import qualified JavaScript.Object as O
+import System.IO.Unsafe (unsafePerformIO)
 
 -- TODO wrap these in newtypes
 
@@ -48,7 +57,8 @@ import Data.JSString
 -- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vnode.md
 type Node = JSVal
 
-type Properties = Map JSString JSVal
+-- note that (Property "attributes") is overwritten here!
+data Property = Property JSString JSVal | Attribute JSString JSVal
 
 -- | A DOM node.
 type DOMNode = JSVal
@@ -58,8 +68,24 @@ type Patch = JSVal
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
--- | namespace? key? tagName properties nodes
-node :: Maybe JSString -> Maybe JSString -> JSString -> Properties -> [Node] -> Node
+-- | key? namespace? tagName properties nodes
+node :: Maybe JSString -> Maybe JSString -> JSString -> [Property] -> [Node] -> Node
+node key namespace tagName properties children =
+  primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+  where
+    c = jsval $ A.fromList children
+    p = jsval $ unsafePerformIO $ do
+      attrs <- O.create
+      props <- O.create
+      forM_ properties $ \p -> case p of
+        Property k v  -> O.setProp k v props
+        Attribute k v -> O.setProp k v attrs
+      -- user is not expected to pass attributes not created using 'attribute' below
+      O.setProp "attributes" (jsval attrs) props
+      return props
+
+foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
+  primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
 {-
 basically, we need to call
@@ -78,8 +104,11 @@ basically, we need to call
 
 
 
-property :: JSString -> JSVal -> Properties
-attribute :: JSString -> JSString -> Properties
+property :: JSString -> JSVal -> Property
+property = Property
+
+attribute :: JSString -> JSString -> Property
+attribute n x = Attribute n (jsval x)
 
 -- attributeNS :: JSString -> JSString -> JSString -> Property
 -- We need to use a hook to set namespace on attributes
@@ -88,7 +117,7 @@ attribute :: JSString -> JSString -> Properties
 -- TODO wrap with decoder, allow Options as per below
 on :: JSString -> (JSVal -> IO ()) -> Property
 
-[node, property, attribute, on] = undefined
+[on] = undefined
 
 
 

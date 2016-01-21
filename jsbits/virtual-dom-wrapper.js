@@ -10,9 +10,8 @@ var isHook = require("virtual-dom/vnode/is-vhook");
 // type Property
 
 // node : String -> List Property -> List Node -> Node
-function node(name, propertyList, contents)
-{
-  return new VNode(name, [], undefined, undefined);
+function node(tagName, properties, children, key, namespace) {
+  return new VNode(tagName, properties, children, key, namespace);
 }
 
 // text : JSString -> Node
@@ -33,10 +32,6 @@ module.exports = {
 
   node : node,
   text : text,
-  // property : String -> Json.Value -> Property
-  // attribute : String -> String -> Property
-  // attributeNS : String -> String -> String -> Property
-  //
   // data Options =
   //     { stopPropagation : Bool
   //     , preventDefault : Bool }
