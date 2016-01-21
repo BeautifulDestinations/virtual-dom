@@ -10,12 +10,14 @@ Supports:
 
   - @create-element@, @diff@ and @patch@
   - @VNode@, @VText@ and @Hooks@
+  - Namespaces
 
 Does currently not support:
 
   - Thunks
   - Widgets
   - Namespaced attributes
+  - VNode keys
 
 -}
 
@@ -46,7 +48,7 @@ import Data.JSString
 -- https://github.com/Matt-Esch/virtual-dom/blob/master/docs/vnode.md
 type Node = JSVal
 
-type Property = JSVal
+type Properties = Map JSString JSVal
 
 -- | A DOM node.
 type DOMNode = JSVal
@@ -56,7 +58,9 @@ type Patch = JSVal
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
-node :: JSString -> [Property] -> [Node] -> Node
+-- | namespace? key? tagName properties nodes
+node :: Maybe JSString -> Maybe JSString -> JSString -> Properties -> [Node] -> Node
+
 {-
 basically, we need to call
   return new VNode(tagName, props, contents, key, namespace);
@@ -74,8 +78,8 @@ basically, we need to call
 
 
 
-property :: JSString -> JSVal -> Property
-attribute :: JSString -> JSString -> Property
+property :: JSString -> JSVal -> Properties
+attribute :: JSString -> JSString -> Properties
 
 -- attributeNS :: JSString -> JSString -> JSString -> Property
 -- We need to use a hook to set namespace on attributes
