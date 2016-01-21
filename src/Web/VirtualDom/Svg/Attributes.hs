@@ -1,5 +1,5 @@
 
-{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE OverloadedStrings, NoMonomorphismRestriction #-}
 
 module Web.VirtualDom.Svg.Attributes
     (
