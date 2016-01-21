@@ -26,6 +26,7 @@ module Web.VirtualDom
     ( Node
     , Property
     , node
+    , node'
     , text
     , attribute
     -- , attributeNS
@@ -68,9 +69,13 @@ type Patch = JSVal
 foreign import javascript "h$vdom.text($1)"
   text :: JSString -> Node
 
+-- | tagName properties nodes
+node :: JSString -> [Property] -> [Node] -> Node
+node = node' Nothing Nothing
+
 -- | key? namespace? tagName properties nodes
-node :: Maybe JSString -> Maybe JSString -> JSString -> [Property] -> [Node] -> Node
-node key namespace tagName properties children =
+node' :: Maybe JSString -> Maybe JSString -> JSString -> [Property] -> [Node] -> Node
+node' key namespace tagName properties children =
   primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
     c = jsval $ A.fromList children

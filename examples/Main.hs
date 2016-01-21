@@ -14,7 +14,7 @@ main = do
   let node1 = text "Hello DOM!"
 
 
-  let node2 = node Nothing Nothing "h1"
+  let node2 = node "h1"
             [ attribute "style" "color:red"
             , property "oncopy" (sayCb "copied")
             , property "onclick" (sayCb "clicked")
