@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Control.Applicative
+import Data.Monoid
 import GHCJS.Types (JSVal, jsval)
 import Data.JSString
 import Web.VirtualDom
