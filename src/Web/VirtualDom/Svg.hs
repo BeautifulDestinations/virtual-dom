@@ -5,14 +5,90 @@
 Create SVG elements based on virtual DOM.
 -}
 module Web.VirtualDom.Svg
-    -- ( Svg
-    -- , Property
-    -- , text
-    -- , node
-    -- -- * Specific
-    --
-    -- )
-    where
+    ( Svg
+    , node
+    , text
+    , svg
+    , foreignObject
+    , animate
+    , animateColor
+    , animateMotion
+    , animateTransform
+    , mpath
+    , set
+    , a
+    , defs
+    , g
+    , marker
+    , mask
+    , missingGlyph
+    , pattern
+    , switch
+    , symbol
+    , desc
+    , metadata
+    , title
+    , feBlend
+    , feColorMatrix
+    , feComponentTransfer
+    , feComposite
+    , feConvolveMatrix
+    , feDiffuseLighting
+    , feDisplacementMap
+    , feFlood
+    , feFuncA
+    , feFuncB
+    , feFuncG
+    , feFuncR
+    , feGaussianBlur
+    , feImage
+    , feMerge
+    , feMergeNode
+    , feMorphology
+    , feOffset
+    , feSpecularLighting
+    , feTile
+    , feTurbulence
+    , font
+    , fontFace
+    , fontFaceFormat
+    , fontFaceName
+    , fontFaceSrc
+    , fontFaceUri
+    , hkern
+    , vkern
+    , linearGradient
+    , radialGradient
+    , stop
+    , circle
+    , ellipse
+    , image
+    , line
+    , path
+    , polygon
+    , polyline
+    , rect
+    , use
+    , feDistantLight
+    , fePointLight
+    , feSpotLight
+    , altGlyph
+    , altGlyphDef
+    , altGlyphItem
+    , glyph
+    , glyphRef
+    , textPath
+    , text
+    , tref
+    , tspan
+    , clipPath
+    , colorProfile
+    , cursor
+    , filter
+    , script
+    , style
+    , view
+    ) where
 
 import Prelude hiding (div, span)
 import Data.JSString hiding (span)
