@@ -91,7 +91,7 @@ module Web.VirtualDom.Svg
     ) where
 
 import Prelude hiding (div, span, filter)
-import Data.JSString hiding (span)
+import Data.JSString hiding (span, filter)
 import qualified Web.VirtualDom as VirtualDom
 
 -- | A node representing a HTML element.
