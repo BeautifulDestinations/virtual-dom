@@ -257,8 +257,8 @@ module Web.VirtualDom.Svg.Attributes
     , writingMode
     ) where
 
-import Prelude hiding (id, min, max)
-import Data.JSString
+import Prelude hiding (id, min, max, exponent, filter)
+import Data.JSString hiding (filter)
 
 import Web.VirtualDom.Svg (Property)
 import qualified Web.VirtualDom as VirtualDom
