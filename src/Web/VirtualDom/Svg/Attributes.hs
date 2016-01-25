@@ -180,16 +180,16 @@ module Web.VirtualDom.Svg.Attributes
     , x1
     , x2
     , xChannelSelector
-    , -- xlinkActuate
-    , -- xlinkArcrole
-    , -- xlinkHref
-    , -- xlinkRole
-    , -- xlinkShow
-    , -- xlinkTitle
-    , -- xlinkType
-    , -- xmlBase
-    , -- xmlLang
-    , -- xmlSpace
+    -- , xlinkActuate
+    -- , xlinkArcrole
+    -- , xlinkHref
+    -- , xlinkRole
+    -- , xlinkShow
+    -- , xlinkTitle
+    -- , xlinkType
+    -- , xmlBase
+    -- , xmlLang
+    -- , xmlSpace
     , y
     , y1
     , y2
