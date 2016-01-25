@@ -61,7 +61,7 @@ module Web.VirtualDom.Svg.Attributes
     , horizOriginY
     , id
     , ideographic
-    , in
+    , in'
     , in2
     , intercept
     , k
