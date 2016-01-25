@@ -79,7 +79,7 @@ module Web.VirtualDom.Svg
     , glyph
     , glyphRef
     , textPath
-    , text
+    , text'
     , tref
     , tspan
     , clipPath
