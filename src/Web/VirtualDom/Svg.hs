@@ -90,7 +90,7 @@ module Web.VirtualDom.Svg
     , view
     ) where
 
-import Prelude hiding (div, span)
+import Prelude hiding (div, span, filter)
 import Data.JSString hiding (span)
 import qualified Web.VirtualDom as VirtualDom
 

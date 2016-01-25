@@ -154,7 +154,7 @@ module Web.VirtualDom.Svg.Attributes
     , title
     , to
     , transform
-    , type
+    , type'
     , u1
     , u2
     , underlinePosition
