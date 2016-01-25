@@ -6,6 +6,7 @@ Create SVG elements based on virtual DOM.
 -}
 module Web.VirtualDom.Svg
     ( Svg
+    , Property
     , node
     , text
     , svg
