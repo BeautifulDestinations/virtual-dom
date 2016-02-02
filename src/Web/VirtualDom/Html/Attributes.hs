@@ -18,6 +18,7 @@ module Web.VirtualDom.Html.Attributes
     , height
     , min
     , max
+    , step
 
     , class_
     , type_
@@ -73,6 +74,10 @@ min = VirtualDom.attribute "min" . showJS
 -- Int?
 max :: Int -> Property
 max = VirtualDom.attribute "max" . showJS
+
+-- Int?
+step :: Int -> Property
+step = VirtualDom.attribute "step" . showJS
 
 key :: Int -> Property
 key = VirtualDom.attribute "key" . showJS
