@@ -10,10 +10,11 @@ module Web.VirtualDom.Html.Events
     , onSubmit
 
     , click
+    , mousemove
     , change
     , keyup
     , submit
-    
+
     -- * Inspecting Events
     -- ** General
     , stopPropagation
@@ -119,6 +120,9 @@ keyup = onE Event "keyup"
 
 submit :: (Event -> IO ()) -> Property
 submit = onE Event "submit"
+
+mousemove :: (Event -> IO ()) -> Property
+mousemove = onE Event "mousemove"
 
 
 -- or just Event -> JSString
