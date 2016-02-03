@@ -21,10 +21,14 @@ module Web.VirtualDom.Html.Events
     , stopImmediatePropagation
     , preventDefault
     , value
+    , files
     ) where
 
 import GHCJS.Types
 import Data.JSString
+
+import JavaScript.Web.File (File(..), name)
+import JavaScript.Web.XMLHttpRequest (FormDataVal(..))
 
 import Web.VirtualDom.Html (Property)
 import qualified Web.VirtualDom as VirtualDom
@@ -124,6 +128,29 @@ submit = onE Event "submit"
 mousemove :: (Event -> IO ()) -> Property
 mousemove = onE Event "mousemove"
 
+
+newtype FileList = FileList JSVal
+
+foreign import javascript unsafe "$1.target.files"
+  targetFiles :: Event -> FileList
+
+foreign import javascript unsafe "typeof $1 !== 'undefined'"
+  fileListIsntNoting :: FileList -> Bool
+
+foreign import javascript unsafe "$1.length"
+  fileListLength :: FileList -> Int
+
+foreign import javascript unsafe "$1[$2]"
+  fileListItem :: FileList -> Int -> File
+
+files :: Event -> Maybe [FormDataVal]
+files e = case justFiles of
+  False -> Nothing
+  True  -> Just $ fmap ((\f -> FileVal f (Just $ name f)) . fileListItem fl) [0..pred len]
+  where
+    fl        = targetFiles e
+    justFiles = fileListIsntNoting fl
+    len       = fileListLength fl
 
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
