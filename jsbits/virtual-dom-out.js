@@ -26,14 +26,17 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
 // node : String -> List Property -> List Node -> Node
 function node(tagName, properties, children, key, namespace) {
 
-  var useSoftSet = (tagName === 'input' || tagName === 'textarea') && properties.value !== undefined && !isHook(properties.value);
+	var hasPropValue = properties.value !== undefined && !isHook(properties.value);
+	var hasAttrValue = properties.attributes && (properties.attributes.value !== undefined);
+  var useSoftSet = (tagName === 'input' || tagName === 'textarea') && (hasPropValue || hasAttrValue);
 
   if (window.beautifulDestinationsDebug) {
     window.beautifulDestinationsDebug(["node/useSoftSet", useSoftSet, tagName, properties, children]);
   }
 
 	if (useSoftSet) {
-    properties.value = new SoftSetHook(properties.value);
+		var val = hasAttrValue ? properties.attributes.value : properties.value;
+    properties.value = new SoftSetHook(val);
     if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook" }
 	}
 
