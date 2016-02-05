@@ -10,8 +10,27 @@ var isHook = require("virtual-dom/vnode/is-vhook");
 // type Node
 // type Property
 
+function SoftSetHook(value) {
+	this.value = value;
+}
+
+SoftSetHook.prototype.hook = function (node, propertyName) {
+	if (node[propertyName] !== this.value) {
+		node[propertyName] = this.value;
+	}
+};
+
 // node : String -> List Property -> List Node -> Node
 function node(tagName, properties, children, key, namespace) {
+
+  var useSoftSet = (tagName === 'input' || tagName === 'textarea')
+      && properties.value !== undefined && !isHook(properties.value);
+
+	if (useSoftSet) {
+    properties.value = new SoftSetHook(properties.value);
+    if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook" }
+	}
+
   return new VNode(tagName, properties, children, key, namespace);
 }
 
