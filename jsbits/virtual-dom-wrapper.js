@@ -27,6 +27,10 @@ function node(tagName, properties, children, key, namespace) {
 
   var useSoftSet = (tagName === 'input' || tagName === 'textarea') && properties.value !== undefined && !isHook(properties.value);
 
+  if (window.beautifulDestinationsDebug) {
+    window.beautifulDestinationsDebug(["node/useSoftSet", useSoftSet, tagName, properties, children]);
+  }
+
 	if (useSoftSet) {
     properties.value = new SoftSetHook(properties.value);
     if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook" }
