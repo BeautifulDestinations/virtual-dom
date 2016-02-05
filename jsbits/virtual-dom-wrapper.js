@@ -14,6 +14,9 @@ function SoftSetHook(value) {
 }
 
 SoftSetHook.prototype.hook = function (node, propertyName) {
+  if (window.beautifulDestinationsDebug) {
+    window.beautifulDestinationsDebug(["Setting property with a hook", node, propertyName, this.value]);
+  }
 	if (node[propertyName] !== this.value) {
 		node[propertyName] = this.value;
 	}
@@ -22,8 +25,7 @@ SoftSetHook.prototype.hook = function (node, propertyName) {
 // node : String -> List Property -> List Node -> Node
 function node(tagName, properties, children, key, namespace) {
 
-  var useSoftSet = (tagName === 'input' || tagName === 'textarea')
-      && properties.value !== undefined && !isHook(properties.value);
+  var useSoftSet = (tagName === 'input' || tagName === 'textarea') && properties.value !== undefined && !isHook(properties.value);
 
 	if (useSoftSet) {
     properties.value = new SoftSetHook(properties.value);
