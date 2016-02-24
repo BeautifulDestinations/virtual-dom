@@ -29,7 +29,6 @@ module Web.VirtualDom
     , text
     , node
     , nodeWithOptions
-    , vdomWidget
 
     -- ** Properties
     , Property
@@ -98,26 +97,16 @@ node
   -> Node
 node = nodeWithOptions Nothing Nothing
 
-nodeWithOptions = nodeWithOptions' VNode
-
-vdomWidget :: JSString -> [Property] -> [Node] -> Node
-vdomWidget = nodeWithOptions' VWidget Nothing Nothing
-
-
-data Breed = VNode | VWidget
-
 -- | Full version of 'node'. Useful whenever you need to set the XML namespace, as in the case of SVG.
-nodeWithOptions'
-  :: Breed            -- ^ vnode | widget | thunk
-  -> Maybe JSString   -- ^ Optional key
+nodeWithOptions
+  :: Maybe JSString   -- ^ Optional key
   -> Maybe JSString   -- ^ Optional namespace
   -> JSString         -- ^ Tag name
   -> [Property]       -- ^ Properties
   -> [Node]           -- ^ Child nodes
   -> Node
-nodeWithOptions' breed key namespace tagName properties children = case breed of
-    VNode   -> primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
-    VWidget -> primWidget tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+nodeWithOptions key namespace tagName properties children =
+  primNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
     c = jsval $ A.fromList $ fmap getNode children
     p = jsval $ unsafePerformIO $ do
@@ -132,12 +121,6 @@ nodeWithOptions' breed key namespace tagName properties children = case breed of
 
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
-
-
-
-
-foreign import javascript unsafe "h$vdom.vwidget($1, $2, $3, $4, $5)"
-  primWidget :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
 -- $propsVsAttributes
 --
