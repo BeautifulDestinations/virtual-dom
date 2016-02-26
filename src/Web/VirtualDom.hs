@@ -52,6 +52,7 @@ module Web.VirtualDom
     -- ** Utility
     , appendToBody
     , renderingLoop
+    , renderToString
     ) where
 
 import Control.Monad(forM_, forever)
@@ -197,6 +198,16 @@ on n k = property ("on" <> n) $ wrap k
 -- https://github.com/Matt-Esch/virtual-dom#element-creation
 foreign import javascript unsafe "h$vdom.createElement($1)"
   createElement :: Node -> IO DOMNode
+
+foreign import javascript unsafe "$1.innerHTML"
+  innerHTML :: DOMNode -> IO JSString
+
+renderToString :: Node -> IO JSString
+renderToString n = do
+  x <- createElement n
+  y <- innerHTML x
+  -- TODO delete DOMNode x?
+  return y
 
 -- | Compute the difference between two virtual DOM trees.
 --
