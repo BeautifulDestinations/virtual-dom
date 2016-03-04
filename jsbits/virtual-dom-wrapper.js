@@ -9,14 +9,20 @@ var isHook = require("virtual-dom/vnode/is-vhook");
 // type Node
 // type Property
 
+// window.beautifulDestinationsDebug = function(a) { console.log(a) }
+
+function bddebug(a) {
+	if (window.beautifulDestinationsDebug) {
+    window.beautifulDestinationsDebug(a);
+  }
+}
+
 function SoftSetHook(value) {
 	this.value = value;
 }
 
 SoftSetHook.prototype.hook = function (node, propertyName) {
-  if (window.beautifulDestinationsDebug) {
-    window.beautifulDestinationsDebug(["Setting property with a hook", node, propertyName, this.value]);
-  }
+  bddebug(["Setting property with a hook", node, propertyName, this.value]);
 	if (node[propertyName] !== this.value) {
 		node[propertyName] = this.value;
 	}
@@ -29,9 +35,7 @@ function node(tagName, properties, children, key, namespace) {
 	var hasAttrValue = properties.attributes && (properties.attributes.value !== undefined);
   var useSoftSet = (tagName === 'input' || tagName === 'textarea') && (hasPropValue || hasAttrValue);
 
-  if (window.beautifulDestinationsDebug) {
-    window.beautifulDestinationsDebug(["node/useSoftSet", useSoftSet, tagName, properties, children]);
-  }
+  bddebug(["node/useSoftSet", useSoftSet, tagName, properties, children]);
 
 	if (useSoftSet) {
 		var val = hasAttrValue ? properties.attributes.value : properties.value;
@@ -47,27 +51,51 @@ function text(string) {
 		return new VText(string);
 }
 
+var vwidgetHook = function(f) { this.f = f; }
+vwidgetHook.prototype.hook = function (node, propertyName, prevValue) {
+  bddebug(['staticNode hook', node, propertyName, prevValue]);
+	f(node, propertyName, prevValue);
+};
 
+var staticNode = function (tagName, properties, children, key, ns, hookcb) {
+	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
 
+	var rWidget = { type: 'Widget'};
+
+	rWidget.init = function () {
+		bddebug(['creating staticNode with', tagName, properties, children, key, ns])
+		return createElement(node(tagName, properties, children, key, ns));
+	};
+	rWidget.update = function (prev, node) {
+		bddebug(['staticNode update for', tagName, properties, children, key, ns]);
+		bddebug(prev, node);
+		return null; // tell virtual-dom not to touch anything
+	};
+	rWidget.destroy = function (node) {
+		bddebug(['staticNode destroy for ', tagName, properties, children, key, ns]);
+		bddebug(node);
+	}
+
+	return rWidget;
+};
 
 module.exports = {
-  VNode : VNode,
-  VText : VText,
-  diff : diff,
-  patch : patch,
+  VNode         : VNode,
+  VText         : VText,
+  diff          : diff,
+  patch         : patch,
   createElement : createElement,
-  isHook : isHook,
+  isHook        : isHook,
 
-  node : node,
-  text : text,
+  node          : node,
+  text          : text,
+	staticNode    : staticNode,
+
   // data Options =
   //     { stopPropagation : Bool
   //     , preventDefault : Bool }
   //
   // on : String -> Json.Decoder a -> (a -> Signal.Message) -> Property
-
-
-
 
   dummyToBeRemoved : null
 };
