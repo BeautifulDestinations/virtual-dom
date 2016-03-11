@@ -22,6 +22,7 @@ module Web.VirtualDom.Html.Events
     , preventDefault
     , value
     , files
+    , checked
     ) where
 
 import GHCJS.Types
@@ -155,6 +156,9 @@ files e = case justFiles of
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
   value :: Event -> JSString
+  
+foreign import javascript unsafe "$1.target.checked"
+  checked :: Event -> Bool
 
 onE e n = VirtualDom.on n . contramapS e
   where
