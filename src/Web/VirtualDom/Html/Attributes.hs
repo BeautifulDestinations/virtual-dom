@@ -7,6 +7,13 @@ module Web.VirtualDom.Html.Attributes
     , src
     , alt
     , title
+    , disabled
+    , checked
+    , placeholder
+    , autofocus
+    , multiple
+    , accept
+    , selected
     , style
     , lang
     , name
@@ -45,6 +52,27 @@ alt = VirtualDom.attribute "alt"
 
 title :: JSString -> Property
 title = VirtualDom.attribute "title"
+
+disabled :: Bool -> Property
+disabled = VirtualDom.attribute "disabled" . showJS
+
+checked :: Bool -> Property
+checked = VirtualDom.attribute "checked" . showJS
+
+placeholder :: JSString -> Property
+placeholder = VirtualDom.attribute "placeholder"
+
+autofocus :: Bool -> Property
+autofocus = VirtualDom.attribute "autofocus" . showJS
+
+multiple :: Bool -> Property
+multiple = VirtualDom.attribute "multiple" . showJS
+
+accept :: JSString -> Property
+accept = VirtualDom.attribute "accept"
+
+selected :: Bool -> Property
+selected = VirtualDom.attribute "selected" . showJS
 
 style :: JSString -> Property
 style = VirtualDom.attribute "style"
