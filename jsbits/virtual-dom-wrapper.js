@@ -57,19 +57,46 @@ vwidgetHook.prototype.hook = function (node, propertyName, prevValue) {
 	f(node, propertyName, prevValue);
 };
 
-var staticNode = function (tagName, properties, children, key, ns, hookcb) {
+var staticNodesCache = {};
+// var staticNodesRoot = document.createElement('div');
+// staticNodesRoot.style.display = 'none';
+// document.body.appendChild(staticNodesRoot);
+
+var doc = window.document;
+var orig_getElementById = doc.getElementById;
+doc.getElementById = function(anId) {
+	console.log('yahoo', anId, staticNodesCache);
+	if (staticNodesCache[anId]) {
+		return staticNodesCache[anId];
+	} else {
+		return orig_getElementById.bind(doc)(anId);
+	}
+}
+
+var staticNode = function (id_, tagName, properties, children, key, ns, hookcb) {
 	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
 
 	var rWidget = { type: 'Widget'};
 
 	rWidget.init = function () {
 		bddebug(['creating staticNode with', tagName, properties, children, key, ns])
-		return createElement(node(tagName, properties, children, key, ns));
+		if (staticNodesCache[id_]) {
+			return staticNodesCache[id_];
+		} else {
+			var x = createElement(node(tagName, properties, children, key, ns));
+			staticNodesCache[id_] = x;
+			// staticNodesRoot.appendChild(x);
+			return x;
+		}
 	};
 	rWidget.update = function (prev, node) {
 		bddebug(['staticNode update for', tagName, properties, children, key, ns]);
 		bddebug(prev, node);
-		return null; // tell virtual-dom not to touch anything
+		if (staticNodesCache[id_]) {
+			return staticNodesCache[id_];
+		} else {
+			return null; // tell virtual-dom not to touch anything
+		}
 	};
 	rWidget.destroy = function (node) {
 		bddebug(['staticNode destroy for ', tagName, properties, children, key, ns]);

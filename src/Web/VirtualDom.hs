@@ -119,9 +119,14 @@ nodeWithOptions'
   -> [Node]           -- ^ Child nodes
   -> Node
 nodeWithOptions' breed key namespace tagName properties children = case breed of
-    VNode       -> primNode   tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
-    VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+    VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+    VStaticNode -> primStNode id_ tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
+    id_ = case Prelude.filter isId properties of
+            [Attribute k v] -> v
+            _               -> jsval ("default-static-node-id" :: JSString)
+    isId (Attribute k v) = k == "id"
+    isId _              = False
     c = jsval $ A.fromList $ fmap getNode children
     p = jsval $ unsafePerformIO $ do
       attrs <- O.create
@@ -136,8 +141,8 @@ nodeWithOptions' breed key namespace tagName properties children = case breed of
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
-foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
-  primStNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
+foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5, $6)"
+  primStNode :: JSVal -> JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
 -- $propsVsAttributes
 --
