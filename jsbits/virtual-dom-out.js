@@ -66,7 +66,6 @@ var staticNodesCache = {};
 var doc = window.document;
 var orig_getElementById = doc.getElementById;
 doc.getElementById = function(anId) {
-	console.log('yahoo', anId, staticNodesCache);
 	if (staticNodesCache[anId]) {
 		return staticNodesCache[anId];
 	} else {
