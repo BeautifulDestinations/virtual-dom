@@ -41,7 +41,7 @@ function node(tagName, properties, children, key, namespace) {
 	if (useSoftSet) {
 		var val = hasAttrValue ? properties.attributes.value : properties.value;
     properties.value = new SoftSetHook(val);
-    if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook" }
+    if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook"; }
 	}
 
   return new VNode(tagName, properties, children, key, namespace);
@@ -52,16 +52,19 @@ function text(string) {
 		return new VText(string);
 }
 
-var vwidgetHook = function(f) { this.f = f; }
+var vwidgetHook = function(f) { this.f = f; };
+
 vwidgetHook.prototype.hook = function (node, propertyName, prevValue) {
   bddebug(['staticNode hook', node, propertyName, prevValue]);
-	f(node, propertyName, prevValue);
+	this.f(node, propertyName, prevValue);
 };
 
 var staticNodesCache = {};
-// var staticNodesRoot = document.createElement('div');
-// staticNodesRoot.style.display = 'none';
-// document.body.appendChild(staticNodesRoot);
+var defaultStaticNodeIndex = 0;
+var genNextStaticNodeId = function() {
+	defaultStaticNodeIndex++;
+	return "defaultStaticNodeIdPrefix" + defaultStaticNodeIndex.toString();
+}
 
 var doc = window.document;
 var orig_getElementById = doc.getElementById;
@@ -71,15 +74,17 @@ doc.getElementById = function(anId) {
 	} else {
 		return orig_getElementById.bind(doc)(anId);
 	}
-}
+};
 
-var staticNode = function (id_, tagName, properties, children, key, ns, hookcb) {
+var staticNode = function (tagName, properties, children, key, ns, hookcb) {
 	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
+
+	var id_ = properties.attributes.id || genNextStaticNodeId();
 
 	var rWidget = { type: 'Widget'};
 
 	rWidget.init = function () {
-		bddebug(['creating staticNode with', tagName, properties, children, key, ns])
+		bddebug(['creating staticNode with', tagName, properties, children, key, ns]);
 		if (staticNodesCache[id_]) {
 			return staticNodesCache[id_];
 		} else {
@@ -101,7 +106,7 @@ var staticNode = function (id_, tagName, properties, children, key, ns, hookcb) 
 	rWidget.destroy = function (node) {
 		bddebug(['staticNode destroy for ', tagName, properties, children, key, ns]);
 		bddebug(node);
-	}
+	};
 
 	return rWidget;
 };
