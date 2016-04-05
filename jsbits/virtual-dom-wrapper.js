@@ -65,13 +65,18 @@ var genNextStaticNodeId = function() {
 	return "defaultStaticNodeIdPrefix" + defaultStaticNodeIndex.toString();
 }
 
-var doc = window.document;
-var orig_getElementById = doc.getElementById;
-doc.getElementById = function(anId) {
-	if (staticNodesCache[anId]) {
-		return staticNodesCache[anId];
-	} else {
-		return orig_getElementById.bind(doc)(anId);
+var _patch = function () {
+	if (!window._patched) {
+		var doc = window.document;
+		var orig_getElementById = doc.getElementById;
+		doc.getElementById = function(anId) {
+			if (staticNodesCache[anId]) {
+				return staticNodesCache[anId];
+			} else {
+				return orig_getElementById.bind(doc)(anId);
+			};
+		}
+		window._patched = true;
 	}
 };
 
@@ -79,6 +84,7 @@ var staticNode = function (tagName, properties, children, key, ns, hookcb) {
 	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
 
 	var id_ = properties.attributes.id || genNextStaticNodeId();
+	_patch();
 
 	var rWidget = { type: 'Widget'};
 
