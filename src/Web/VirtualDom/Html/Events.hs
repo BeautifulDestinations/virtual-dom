@@ -2,7 +2,7 @@
 {-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings #-}
 
 module Web.VirtualDom.Html.Events
-    ( Event
+    ( Event(..)
     -- * Subscribing for events
     , onClick
     , onChange
@@ -156,7 +156,7 @@ files e = case justFiles of
 -- or just Event -> JSString
 foreign import javascript unsafe "$1.target.value"
   value :: Event -> JSString
-  
+
 foreign import javascript unsafe "$1.target.checked"
   checked :: Event -> Bool
 
