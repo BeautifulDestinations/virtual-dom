@@ -119,7 +119,7 @@ nodeWithOptions'
   -> [Node]           -- ^ Child nodes
   -> Node
 nodeWithOptions' breed key namespace tagName properties children = case breed of
-    VNode       -> primNode   tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+    VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
     VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
     c = jsval $ A.fromList $ fmap getNode children

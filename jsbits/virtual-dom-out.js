@@ -41,7 +41,7 @@ function node(tagName, properties, children, key, namespace) {
 	if (useSoftSet) {
 		var val = hasAttrValue ? properties.attributes.value : properties.value;
     properties.value = new SoftSetHook(val);
-    if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook" }
+    if (!isHook(properties.value)) { throw "virtual-dom-wrapper.js: Not a hook"; }
 	}
 
   return new VNode(tagName, properties, children, key, namespace);
@@ -52,30 +52,67 @@ function text(string) {
 		return new VText(string);
 }
 
-var vwidgetHook = function(f) { this.f = f; }
+var vwidgetHook = function(f) { this.f = f; };
+
 vwidgetHook.prototype.hook = function (node, propertyName, prevValue) {
   bddebug(['staticNode hook', node, propertyName, prevValue]);
-	f(node, propertyName, prevValue);
+	this.f(node, propertyName, prevValue);
+};
+
+var staticNodesCache = {};
+var defaultStaticNodeIndex = 0;
+var genNextStaticNodeId = function() {
+	defaultStaticNodeIndex++;
+	return "defaultStaticNodeIdPrefix" + defaultStaticNodeIndex.toString();
+}
+
+var _patch = function () {
+	if (!window._patched) {
+		var doc = window.document;
+		var orig_getElementById = doc.getElementById;
+		doc.getElementById = function(anId) {
+			if (staticNodesCache[anId]) {
+				return staticNodesCache[anId];
+			} else {
+				return orig_getElementById.bind(doc)(anId);
+			};
+		}
+		window._patched = true;
+	}
 };
 
 var staticNode = function (tagName, properties, children, key, ns, hookcb) {
 	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
 
+	var id_ = properties.attributes.id || genNextStaticNodeId();
+	_patch();
+
 	var rWidget = { type: 'Widget'};
 
 	rWidget.init = function () {
-		bddebug(['creating staticNode with', tagName, properties, children, key, ns])
-		return createElement(node(tagName, properties, children, key, ns));
+		bddebug(['creating staticNode with', tagName, properties, children, key, ns]);
+		if (staticNodesCache[id_]) {
+			return staticNodesCache[id_];
+		} else {
+			var x = createElement(node(tagName, properties, children, key, ns));
+			staticNodesCache[id_] = x;
+			// staticNodesRoot.appendChild(x);
+			return x;
+		}
 	};
 	rWidget.update = function (prev, node) {
 		bddebug(['staticNode update for', tagName, properties, children, key, ns]);
 		bddebug(prev, node);
-		return null; // tell virtual-dom not to touch anything
+		if (staticNodesCache[id_]) {
+			return staticNodesCache[id_];
+		} else {
+			return null; // tell virtual-dom not to touch anything
+		}
 	};
 	rWidget.destroy = function (node) {
 		bddebug(['staticNode destroy for ', tagName, properties, children, key, ns]);
 		bddebug(node);
-	}
+	};
 
 	return rWidget;
 };
