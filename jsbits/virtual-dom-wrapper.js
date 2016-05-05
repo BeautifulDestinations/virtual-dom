@@ -6,11 +6,6 @@ var patch = require('virtual-dom/vdom/patch');
 var createElement = require('virtual-dom/vdom/create-element');
 var isHook = require("virtual-dom/vnode/is-vhook");
 
-// type Node
-// type Property
-
-// window.beautifulDestinationsDebug = function(a) { console.log(a) }
-
 function bddebug(a) {
 	if (window.beautifulDestinationsDebug) {
     window.beautifulDestinationsDebug(a);
@@ -123,17 +118,9 @@ module.exports = {
   patch         : patch,
   createElement : createElement,
   isHook        : isHook,
-
   node          : node,
   text          : text,
-	staticNode    : staticNode,
-
-  // data Options =
-  //     { stopPropagation : Bool
-  //     , preventDefault : Bool }
-  //
-  // on : String -> Json.Decoder a -> (a -> Signal.Message) -> Property
-
-  dummyToBeRemoved : null
+	staticNode    : staticNode
 };
+
 h$vdom = module.exports;

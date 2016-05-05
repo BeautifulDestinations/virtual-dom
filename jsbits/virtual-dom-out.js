@@ -7,11 +7,6 @@ var patch = require('virtual-dom/vdom/patch');
 var createElement = require('virtual-dom/vdom/create-element');
 var isHook = require("virtual-dom/vnode/is-vhook");
 
-// type Node
-// type Property
-
-// window.beautifulDestinationsDebug = function(a) { console.log(a) }
-
 function bddebug(a) {
 	if (window.beautifulDestinationsDebug) {
     window.beautifulDestinationsDebug(a);
@@ -124,22 +119,14 @@ module.exports = {
   patch         : patch,
   createElement : createElement,
   isHook        : isHook,
-
   node          : node,
   text          : text,
-	staticNode    : staticNode,
-
-  // data Options =
-  //     { stopPropagation : Bool
-  //     , preventDefault : Bool }
-  //
-  // on : String -> Json.Decoder a -> (a -> Signal.Message) -> Property
-
-  dummyToBeRemoved : null
+	staticNode    : staticNode
 };
+
 h$vdom = module.exports;
 
-},{"virtual-dom/vdom/create-element":7,"virtual-dom/vdom/patch":10,"virtual-dom/vnode/is-vhook":14,"virtual-dom/vnode/vnode":19,"virtual-dom/vnode/vtext":21,"virtual-dom/vtree/diff":23}],2:[function(require,module,exports){
+},{"virtual-dom/vdom/create-element":6,"virtual-dom/vdom/patch":9,"virtual-dom/vnode/is-vhook":13,"virtual-dom/vnode/vnode":18,"virtual-dom/vnode/vtext":20,"virtual-dom/vtree/diff":22}],2:[function(require,module,exports){
 
 },{}],3:[function(require,module,exports){
 (function (global){
@@ -168,16 +155,6 @@ module.exports = function isObject(x) {
 };
 
 },{}],5:[function(require,module,exports){
-var nativeIsArray = Array.isArray
-var toString = Object.prototype.toString
-
-module.exports = nativeIsArray || isArray
-
-function isArray(obj) {
-    return toString.call(obj) === "[object Array]"
-}
-
-},{}],6:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook.js")
 
@@ -276,7 +253,7 @@ function getPrototype(value) {
     }
 }
 
-},{"../vnode/is-vhook.js":14,"is-object":4}],7:[function(require,module,exports){
+},{"../vnode/is-vhook.js":13,"is-object":4}],6:[function(require,module,exports){
 var document = require("global/document")
 
 var applyProperties = require("./apply-properties")
@@ -324,7 +301,7 @@ function createElement(vnode, opts) {
     return node
 }
 
-},{"../vnode/handle-thunk.js":12,"../vnode/is-vnode.js":15,"../vnode/is-vtext.js":16,"../vnode/is-widget.js":17,"./apply-properties":6,"global/document":3}],8:[function(require,module,exports){
+},{"../vnode/handle-thunk.js":11,"../vnode/is-vnode.js":14,"../vnode/is-vtext.js":15,"../vnode/is-widget.js":16,"./apply-properties":5,"global/document":3}],7:[function(require,module,exports){
 // Maps a virtual DOM tree onto a real DOM tree in an efficient manner.
 // We don't want to read all of the DOM nodes in the tree so we use
 // the in-order tree indexing to eliminate recursion down certain branches.
@@ -411,7 +388,7 @@ function ascending(a, b) {
     return a > b ? 1 : -1
 }
 
-},{}],9:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var applyProperties = require("./apply-properties")
 
 var isWidget = require("../vnode/is-widget.js")
@@ -564,7 +541,7 @@ function replaceRoot(oldRoot, newRoot) {
     return newRoot;
 }
 
-},{"../vnode/is-widget.js":17,"../vnode/vpatch.js":20,"./apply-properties":6,"./update-widget":11}],10:[function(require,module,exports){
+},{"../vnode/is-widget.js":16,"../vnode/vpatch.js":19,"./apply-properties":5,"./update-widget":10}],9:[function(require,module,exports){
 var document = require("global/document")
 var isArray = require("x-is-array")
 
@@ -646,7 +623,7 @@ function patchIndices(patches) {
     return indices
 }
 
-},{"./create-element":7,"./dom-index":8,"./patch-op":9,"global/document":3,"x-is-array":5}],11:[function(require,module,exports){
+},{"./create-element":6,"./dom-index":7,"./patch-op":8,"global/document":3,"x-is-array":23}],10:[function(require,module,exports){
 var isWidget = require("../vnode/is-widget.js")
 
 module.exports = updateWidget
@@ -663,7 +640,7 @@ function updateWidget(a, b) {
     return false
 }
 
-},{"../vnode/is-widget.js":17}],12:[function(require,module,exports){
+},{"../vnode/is-widget.js":16}],11:[function(require,module,exports){
 var isVNode = require("./is-vnode")
 var isVText = require("./is-vtext")
 var isWidget = require("./is-widget")
@@ -705,14 +682,14 @@ function renderThunk(thunk, previous) {
     return renderedThunk
 }
 
-},{"./is-thunk":13,"./is-vnode":15,"./is-vtext":16,"./is-widget":17}],13:[function(require,module,exports){
+},{"./is-thunk":12,"./is-vnode":14,"./is-vtext":15,"./is-widget":16}],12:[function(require,module,exports){
 module.exports = isThunk
 
 function isThunk(t) {
     return t && t.type === "Thunk"
 }
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = isHook
 
 function isHook(hook) {
@@ -721,7 +698,7 @@ function isHook(hook) {
        typeof hook.unhook === "function" && !hook.hasOwnProperty("unhook"))
 }
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualNode
@@ -730,7 +707,7 @@ function isVirtualNode(x) {
     return x && x.type === "VirtualNode" && x.version === version
 }
 
-},{"./version":18}],16:[function(require,module,exports){
+},{"./version":17}],15:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = isVirtualText
@@ -739,17 +716,17 @@ function isVirtualText(x) {
     return x && x.type === "VirtualText" && x.version === version
 }
 
-},{"./version":18}],17:[function(require,module,exports){
+},{"./version":17}],16:[function(require,module,exports){
 module.exports = isWidget
 
 function isWidget(w) {
     return w && w.type === "Widget"
 }
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 module.exports = "2"
 
-},{}],19:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 var version = require("./version")
 var isVNode = require("./is-vnode")
 var isWidget = require("./is-widget")
@@ -823,7 +800,7 @@ function VirtualNode(tagName, properties, children, key, namespace) {
 VirtualNode.prototype.version = version
 VirtualNode.prototype.type = "VirtualNode"
 
-},{"./is-thunk":13,"./is-vhook":14,"./is-vnode":15,"./is-widget":17,"./version":18}],20:[function(require,module,exports){
+},{"./is-thunk":12,"./is-vhook":13,"./is-vnode":14,"./is-widget":16,"./version":17}],19:[function(require,module,exports){
 var version = require("./version")
 
 VirtualPatch.NONE = 0
@@ -847,7 +824,7 @@ function VirtualPatch(type, vNode, patch) {
 VirtualPatch.prototype.version = version
 VirtualPatch.prototype.type = "VirtualPatch"
 
-},{"./version":18}],21:[function(require,module,exports){
+},{"./version":17}],20:[function(require,module,exports){
 var version = require("./version")
 
 module.exports = VirtualText
@@ -859,7 +836,7 @@ function VirtualText(text) {
 VirtualText.prototype.version = version
 VirtualText.prototype.type = "VirtualText"
 
-},{"./version":18}],22:[function(require,module,exports){
+},{"./version":17}],21:[function(require,module,exports){
 var isObject = require("is-object")
 var isHook = require("../vnode/is-vhook")
 
@@ -919,7 +896,7 @@ function getPrototype(value) {
   }
 }
 
-},{"../vnode/is-vhook":14,"is-object":4}],23:[function(require,module,exports){
+},{"../vnode/is-vhook":13,"is-object":4}],22:[function(require,module,exports){
 var isArray = require("x-is-array")
 
 var VPatch = require("../vnode/vpatch")
@@ -1348,4 +1325,14 @@ function appendPatch(apply, patch) {
     }
 }
 
-},{"../vnode/handle-thunk":12,"../vnode/is-thunk":13,"../vnode/is-vnode":15,"../vnode/is-vtext":16,"../vnode/is-widget":17,"../vnode/vpatch":20,"./diff-props":22,"x-is-array":5}]},{},[1]);
+},{"../vnode/handle-thunk":11,"../vnode/is-thunk":12,"../vnode/is-vnode":14,"../vnode/is-vtext":15,"../vnode/is-widget":16,"../vnode/vpatch":19,"./diff-props":21,"x-is-array":23}],23:[function(require,module,exports){
+var nativeIsArray = Array.isArray
+var toString = Object.prototype.toString
+
+module.exports = nativeIsArray || isArray
+
+function isArray(obj) {
+    return toString.call(obj) === "[object Array]"
+}
+
+},{}]},{},[1]);
