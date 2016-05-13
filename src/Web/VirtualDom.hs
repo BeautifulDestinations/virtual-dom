@@ -194,12 +194,14 @@ foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
 --
 property :: JSString -> JSVal -> Property
 property = Property
+{-# INLINABLE property #-}
 
 -- | A virtual node /attribute/.
 --
 -- Map to @setAttribute@ in JavaScript.
 attribute :: JSString -> JSString -> Property
 attribute n x = Attribute n (jsval x)
+{-# INLINABLE attribute #-}
 
 -- attributeNS :: JSString -> JSString -> JSString -> Property
 -- We need to use a hook to set namespace on attributes
