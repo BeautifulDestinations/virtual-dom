@@ -151,11 +151,11 @@ nodeWithOptionsSVG
   -> Node
 nodeWithOptionsSVG !namespace !tagName !properties !children = primNode_4th_argument_undefined tagName p c namespace
   where
-    c = jsval $ A.fromList $ fmap getNode (eval children)
+    c = jsval $ A.fromList $ fmap getNode ({-eval-} children)
     p = jsval $ unsafePerformIO $ do
       attrs <- O.create
       props <- O.create
-      forM_ (eval properties) $ \prop -> case prop of
+      forM_ ({-eval-} properties) $ \prop -> case prop of
         Property k v  -> O.setProp k v props
         Attribute k v -> O.setProp k v attrs
       -- user is not expected to pass attributes not created using 'attribute' below
