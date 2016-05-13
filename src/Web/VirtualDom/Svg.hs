@@ -116,9 +116,10 @@ You should always be able to use the helper functions already defined in this
 library though!
 -}
 node :: JSString -> [Property] -> [Svg] -> Svg
-node = VirtualDom.nodeWithOptions Nothing (Just svgNamespace)
+node = VirtualDom.nodeWithOptionsSVG svgNamespace
   where
    svgNamespace = "http://www.w3.org/2000/svg"
+{-# INLINABLE node #-}
 
 {-| A simple text node, no tags at all.
 Warning: not to be confused with `text'` which produces the SVG `<text>` tag!

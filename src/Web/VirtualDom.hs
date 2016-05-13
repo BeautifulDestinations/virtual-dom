@@ -31,6 +31,7 @@ module Web.VirtualDom
     , text
     , node
     , nodeWithOptions
+    , nodeWithOptionsSVG
     , staticNode
 
     -- ** Properties
@@ -141,8 +142,35 @@ nodeWithOptions' !breed !key !namespace !tagName !properties !children = case br
       return props
     eval x = deepseq x x
 
+-- Optimized for SVG.
+nodeWithOptionsSVG
+  :: JSString         -- ^ Namespace
+  -> JSString         -- ^ Tag name
+  -> [Property]       -- ^ Properties
+  -> [Node]           -- ^ Child nodes
+  -> Node
+nodeWithOptionsSVG !namespace !tagName !properties !children = primNode_4th_argument_undefined tagName p c namespace
+  where
+    c = jsval $ A.fromList $ fmap getNode (eval children)
+    p = jsval $ unsafePerformIO $ do
+      attrs <- O.create
+      props <- O.create
+      forM_ (eval properties) $ \prop -> case prop of
+        Property k v  -> O.setProp k v props
+        Attribute k v -> O.setProp k v attrs
+      -- user is not expected to pass attributes not created using 'attribute' below
+      O.setProp "attributes" (jsval attrs) props
+      return props
+    eval x = deepseq x x
+{-# INLINABLE nodeWithOptionsSVG #-}
+
+
+
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
+
+foreign import javascript unsafe "h$vdom.node($1,$2,$3,undefined,$4)"
+  primNode_4th_argument_undefined :: JSString -> JSVal -> JSVal -> JSString -> Node
 
 foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
   primStNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
