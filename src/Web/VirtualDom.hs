@@ -1,5 +1,7 @@
 
 {-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings, BangPatterns #-}
+{-# LANGUAGE DeriveGeneric, DeriveAnyClass #-}
+
 
 {-|
 Low level bindings to virtual-dom.
@@ -68,13 +70,18 @@ import qualified JavaScript.Object as O
 import System.IO.Unsafe (unsafePerformIO)
 import Data.IORef
 
+import GHC.Generics (Generic)
+import Control.DeepSeq
+
 -- TODO wrap these in newtypes
 
 -- | A node in the virtual DOM.
 newtype Node = Node { getNode :: JSVal }
+  deriving(Generic, NFData)
 
 -- | Propety of a node. Create using 'attribute' or 'property'.
 data Property = Property !JSString !JSVal | Attribute !JSString !JSVal
+  deriving(Generic, NFData)
 
 -- | A node in the real DOM.
 
@@ -122,16 +129,17 @@ nodeWithOptions' !breed !key !namespace !tagName !properties !children = case br
     VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
     VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
-    c = jsval $ A.fromList $ fmap getNode children
+    c = jsval $ A.fromList $ fmap getNode (eval children)
     p = jsval $ unsafePerformIO $ do
       attrs <- O.create
       props <- O.create
-      forM_ properties $ \prop -> case prop of
+      forM_ (eval properties) $ \prop -> case prop of
         Property k v  -> O.setProp k v props
         Attribute k v -> O.setProp k v attrs
       -- user is not expected to pass attributes not created using 'attribute' below
       O.setProp "attributes" (jsval attrs) props
       return props
+    eval x = deepseq x x
 
 foreign import javascript unsafe "h$vdom.node($1,$2,$3,$4,$5)"
   primNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node

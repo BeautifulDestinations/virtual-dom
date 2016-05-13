@@ -30,6 +30,7 @@ library
                        -- ghcjs-ffiqq,
                        ghcjs-base >= 0.2.0.0,
                        ghcjs-prim,
+                       deepseq,
                        containers
   hs-source-dirs:      src
   default-language:    Haskell2010
@@ -43,5 +44,6 @@ executable virtual-dom-example
                        -- ghcjs-ffiqq,
                        virtual-dom,
                        containers,
+                       deepseq,
                        ghcjs-base
   ghcjs-Options:       -Wall
