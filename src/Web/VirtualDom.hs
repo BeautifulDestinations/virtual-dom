@@ -1,5 +1,5 @@
 
-{-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings #-}
+{-# LANGUAGE JavaScriptFFI, CPP, OverloadedStrings, BangPatterns #-}
 
 {-|
 Low level bindings to virtual-dom.
@@ -74,7 +74,7 @@ import Data.IORef
 newtype Node = Node { getNode :: JSVal }
 
 -- | Propety of a node. Create using 'attribute' or 'property'.
-data Property = Property JSString JSVal | Attribute JSString JSVal
+data Property = Property !JSString !JSVal | Attribute !JSString !JSVal
 
 -- | A node in the real DOM.
 
@@ -101,7 +101,7 @@ node = nodeWithOptions Nothing Nothing
 
 nodeWithOptions = nodeWithOptions' VNode
 
--- | staticNode is just an ordinary node, just marked with metadata indicating that
+-- | Static node is just an ordinary node, just marked with metadata indicating that
 -- virtual-dom should not modify it's content on patching. Implemented
 -- as virtual-dom's widget.
 staticNode :: JSString -> [Property] -> [Node] -> Node
@@ -111,14 +111,14 @@ data VNodeVariant = VNode | VStaticNode
 
 -- | Full version of 'node'. Useful whenever you need to set the XML namespace, as in the case of SVG.
 nodeWithOptions'
-  :: VNodeVariant     -- ^ vnode | static vnode
+  :: VNodeVariant     -- ^ Is this node static
   -> Maybe JSString   -- ^ Optional key
   -> Maybe JSString   -- ^ Optional namespace
   -> JSString         -- ^ Tag name
   -> [Property]       -- ^ Properties
   -> [Node]           -- ^ Child nodes
   -> Node
-nodeWithOptions' breed key namespace tagName properties children = case breed of
+nodeWithOptions' !breed !key !namespace !tagName !properties !children = case breed of
     VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
     VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where

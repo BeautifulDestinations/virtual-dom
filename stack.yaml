@@ -1,9 +1,13 @@
-flags: {}
-compiler: ghcjs-0.2.0_ghc-7.10.2
+compiler: ghcjs-0.2.0.20151230.3_ghc-7.10.2
+setup-info:
+ ghcjs:
+  source:
+   ghcjs-0.2.0.20151230.3_ghc-7.10.2:
+    url: "https://github.com/nrolland/ghcjs/releases/download/v.0.2.0.20151230.3/ghcjs-0.2.0.20151230.3.tar.gz"
 packages:
 - '.'
 # - location:
-    # git: git@github.com:ghcjs/ghcjs-ffiqq.git
-    # commit: da31b18582542fcfceade5ef6b2aca66662b9e20
-extra-deps:
-resolver: nightly-2015-12-14
+#     git: https://github.com/ghcjs/ghcjs-base.git
+#     commit: 831bbe58540158146c3f9b4e2fa960d82b11a1b6
+# extra-deps: [ ListZipper-1.2.0.2 ]
+resolver: lts-3.20
