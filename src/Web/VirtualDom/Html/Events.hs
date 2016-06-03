@@ -8,12 +8,24 @@ module Web.VirtualDom.Html.Events
     , onChange
     , onKeyup
     , onSubmit
+    , onDragstart
+    , onDragover
+    , onDragdrop
+    , onDragend
+    , onDragenter
+    , onDragleave
 
     , click
     , mousemove
     , change
     , keyup
     , submit
+    , dragstart
+    , dragover
+    , dragdrop
+    , dragend
+    , dragenter
+    , dragleave
 
     -- * Inspecting Events
     -- ** General
@@ -23,6 +35,13 @@ module Web.VirtualDom.Html.Events
     , value
     , files
     , checked
+
+    , getDataTransfer
+    , setDataTransfer
+    , clearDataTransfer
+    , effectAllowed
+    , dropEffect
+    , setDragImage
     ) where
 
 import GHCJS.Types
@@ -112,7 +131,43 @@ onKeyup = onE Event "keyup"
 onSubmit :: (Event -> IO ()) -> Property
 onSubmit = onE Event "submit"
 
+onDragstart :: (Event -> IO ()) -> Property
+onDragstart = onE Event "dragstart"
+
+onDragover :: (Event -> IO ()) -> Property
+onDragover = onE Event "dragover"
+
+onDragenter :: (Event -> IO ()) -> Property
+onDragenter = onE Event "dragenter"
+
+onDragleave :: (Event -> IO ()) -> Property
+onDragleave = onE Event "dragleave"
+
+onDragdrop :: (Event -> IO ()) -> Property
+onDragdrop = onE Event "drop"
+
+onDragend :: (Event -> IO ()) -> Property
+onDragend = onE Event "dragend"
+
 -- Alternate convention:
+
+dragstart :: (Event -> IO ()) -> Property
+dragstart = onE Event "dragstart"
+
+dragover :: (Event -> IO ()) -> Property
+dragover = onE Event "dragover"
+
+dragenter :: (Event -> IO ()) -> Property
+dragenter = onE Event "dragenter"
+
+dragleave :: (Event -> IO ()) -> Property
+dragleave = onE Event "dragleave"
+
+dragdrop :: (Event -> IO ()) -> Property
+dragdrop = onE Event "drop"
+
+dragend :: (Event -> IO ()) -> Property
+dragend = onE Event "dragend"
 
 click :: (Event -> IO ()) -> Property
 click = onE Event "click"
@@ -159,6 +214,24 @@ foreign import javascript unsafe "$1.target.value"
 
 foreign import javascript unsafe "$1.target.checked"
   checked :: Event -> Bool
+
+foreign import javascript unsafe "$1.dataTransfer.getData($2)"
+  getDataTransfer :: Event -> JSString -> JSString
+
+foreign import javascript unsafe "$1.dataTransfer.setData($2, $3)"
+  setDataTransfer :: Event -> JSString -> JSString -> IO ()
+
+foreign import javascript unsafe "$1.dataTransfer.clearData()"
+  clearDataTransfer :: Event -> IO ()
+
+foreign import javascript unsafe "$1.dataTransfer.effectAllowed = $2"
+  effectAllowed :: Event -> JSString -> IO ()
+
+foreign import javascript unsafe "$1.dataTransfer.dropEffect = $2"
+  dropEffect :: Event -> JSString -> IO ()
+
+foreign import javascript unsafe "(function(){var x=new Image($3, $4); x.style.width=$3+'px'; x.style.height=$4+'px'; x.src=$2; $1.dataTransfer.setDragImage(x, ($3 / 2), ($4 / 2));}())"
+  setDragImage :: Event -> JSString -> Int -> Int -> IO ()
 
 onE e n = VirtualDom.on n . contramapS e
   where

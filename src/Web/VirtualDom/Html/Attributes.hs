@@ -9,6 +9,7 @@ module Web.VirtualDom.Html.Attributes
     , title
     , disabled
     , checked
+    , draggable
     , placeholder
     , autofocus
     , multiple
@@ -67,6 +68,9 @@ autofocus = VirtualDom.attribute "autofocus" . showJS
 
 multiple :: Bool -> Property
 multiple = VirtualDom.attribute "multiple" . showJS
+
+draggable :: Bool -> Property
+draggable = VirtualDom.attribute "draggable" . showJS
 
 accept :: JSString -> Property
 accept = VirtualDom.attribute "accept"
