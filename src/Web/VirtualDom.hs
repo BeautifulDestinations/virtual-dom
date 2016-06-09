@@ -126,7 +126,7 @@ nodeWithOptions'
   -> [Property]       -- ^ Properties
   -> [Node]           -- ^ Child nodes
   -> Node
-nodeWithOptions' !breed !key !namespace !tagName !properties !children = case breed of
+nodeWithOptions'  breed  key  namespace  tagName  properties  children = case breed of
     VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
     VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
   where
