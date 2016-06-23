@@ -6,6 +6,7 @@ module Web.VirtualDom.Html.Events
     -- * Subscribing for events
     , onClick
     , onChange
+    , onKeydown
     , onKeyup
     , onSubmit
     , onDragstart
@@ -18,6 +19,7 @@ module Web.VirtualDom.Html.Events
     , click
     , mousemove
     , change
+    , keydown
     , keyup
     , submit
     , dragstart
@@ -125,6 +127,9 @@ onClick = onE Event "click"
 onChange :: (Event -> IO ()) -> Property
 onChange = onE Event "change"
 
+onKeydown :: (Event -> IO ()) -> Property
+onKeydown = onE Event "keydown"
+
 onKeyup :: (Event -> IO ()) -> Property
 onKeyup = onE Event "keyup"
 
@@ -174,6 +179,9 @@ click = onE Event "click"
 
 change :: (Event -> IO ()) -> Property
 change = onE Event "change"
+
+-- keydown :: (Event -> IO Bool) -> Property
+keydown = onE Event "keydown"
 
 keyup :: (Event -> IO ()) -> Property
 keyup = onE Event "keyup"
