@@ -34,6 +34,9 @@ module Web.VirtualDom
     , nodeWithOptionsSVG
     , staticNode
 
+    , StaticNodeCB
+    , staticNodeWithCB
+
     -- ** Properties
     , Property
     -- *** Properties vs. attributes
@@ -113,9 +116,20 @@ nodeWithOptions = nodeWithOptions' VNode
 -- virtual-dom should not modify it's content on patching. Implemented
 -- as virtual-dom's widget.
 staticNode :: JSString -> [Property] -> [Node] -> Node
-staticNode = nodeWithOptions' VStaticNode Nothing Nothing
+staticNode          = nodeWithOptions' VStaticNode Nothing Nothing
 
-data VNodeVariant = VNode | VStaticNode
+staticNodeWithCB :: StaticNodeCB -> JSString -> [Property] -> [Node] -> Node
+staticNodeWithCB cb = nodeWithOptions' (VStaticNodeWithCB cb) Nothing Nothing
+
+
+type StaticNodeCB = Callback (JSVal -> IO ())
+
+data VNodeVariant
+  = VNode                           -- ^ Normal node, immutable and subject to refresh.
+  | VStaticNode                     -- ^ Static node, rendered once and never updated.
+  | VStaticNodeWithCB StaticNodeCB  -- ^ Like VStaticNode, with a callback that is invoked once when the node is switched in.
+                                    --   This allow other applications/frameworks to take control of rendering in the node as
+                                    --   soon as we are sure it has been created in the real DOM.
 
 -- | Full version of 'node'. Useful whenever you need to set the XML namespace, as in the case of SVG.
 nodeWithOptions'
@@ -126,9 +140,10 @@ nodeWithOptions'
   -> [Property]       -- ^ Properties
   -> [Node]           -- ^ Child nodes
   -> Node
-nodeWithOptions'  breed  key  namespace  tagName  properties  children = case breed of
-    VNode       -> primNode       tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
-    VStaticNode -> primStNode tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+nodeWithOptions'  breed  key  namespace             tagName  properties  children = case breed of
+    VNode                 -> primNode               tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+    VStaticNode           -> primStNode             tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace)
+    VStaticNodeWithCB cb  -> primStNodeWithCallback tagName p c (maybe F.jsUndefined jsval key) (maybe F.jsUndefined jsval namespace) cb
   where
     c = jsval $ A.fromList $ fmap getNode (eval children)
     p = jsval $ unsafePerformIO $ do
@@ -174,6 +189,9 @@ foreign import javascript unsafe "h$vdom.node($1,$2,$3,undefined,$4)"
 
 foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
   primStNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
+
+foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
+  primStNodeWithCallback :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> StaticNodeCB -> Node
 
 -- $propsVsAttributes
 --
