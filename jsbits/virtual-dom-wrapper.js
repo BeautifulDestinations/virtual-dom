@@ -75,6 +75,7 @@ var _patch = function () {
 	}
 };
 
+// hookcb : (node, propertyName, previousValue?) -> ()
 var staticNode = function (tagName, properties, children, key, ns, hookcb) {
 	if (hookcb) { properties['xxx-hook'] = new vwidgetHook(hookcb); }
 
