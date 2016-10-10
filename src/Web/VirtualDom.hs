@@ -190,7 +190,7 @@ foreign import javascript unsafe "h$vdom.node($1,$2,$3,undefined,$4)"
 foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
   primStNode :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> Node
 
-foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5)"
+foreign import javascript unsafe "h$vdom.staticNode($1, $2, $3, $4, $5, $6)"
   primStNodeWithCallback :: JSString -> JSVal -> JSVal -> JSVal -> JSVal -> StaticNodeCB -> Node
 
 -- $propsVsAttributes
