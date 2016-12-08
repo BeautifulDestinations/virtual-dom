@@ -20,6 +20,7 @@ module Web.VirtualDom.Html.Attributes
     , name
     , target
     , value
+    , list
 
     , key
     , width
@@ -120,6 +121,8 @@ width = VirtualDom.attribute "width" . showJS
 height :: Int -> Property
 height = VirtualDom.attribute "height" . showJS
 
+list :: JSString -> Property
+list = VirtualDom.attribute "list"
 
 -- Internal
 

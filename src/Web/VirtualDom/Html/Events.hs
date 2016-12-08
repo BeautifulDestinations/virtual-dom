@@ -28,6 +28,8 @@ module Web.VirtualDom.Html.Events
     , dragend
     , dragenter
     , dragleave
+    , focus
+    , focusout
 
     -- * Inspecting Events
     -- ** General
@@ -192,6 +194,11 @@ submit = onE Event "submit"
 mousemove :: (Event -> IO ()) -> Property
 mousemove = onE Event "mousemove"
 
+focus :: (Event -> IO ()) -> Property
+focus = onE Event "focus"
+
+focusout :: (Event -> IO ()) -> Property
+focusout = onE Event "focusout"
 
 newtype FileList = FileList JSVal
 
